@@ -1,3 +1,10 @@
+<?php
+include_once 'connect.php';
+session_start();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,13 +18,13 @@
         <div class="sidebar">
             <div class="profile">
                 <img src="profile_icon.png" alt="Landlord Icon">
-                <p>Landlord</p>
+                <p><?php echo $_SESSION['user'];?></p>
             </div>
             <ul>
                 <li><a href="#">Dashboard</a></li>
                 <li><a href="#" class="active">Monthly Bills</a></li>
-                <li><a href="tenants.html">Tenants</a></li>
-                <li><a href="#">Log out</a></li>
+                <li><a href="tenants.php">Tenants</a></li>
+                <li><a href="lnlogout.php">Log out</a></li>
             </ul>
         </div>
         <div class="main-content">
