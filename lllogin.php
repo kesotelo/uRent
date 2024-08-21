@@ -95,7 +95,7 @@
         </div>
         <div class="form-section">
             <h2>Landlord Login</h2>
-            <form action="lnaut.php" method="post">
+            <form action="llaut.php" method="post">
                 <div class="form-group">
                     <img src="user-icon.png" alt="User Icon">
                     <input type="text" name="user" placeholder="Username" required autocomplete="off">

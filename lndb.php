@@ -1,3 +1,10 @@
+<?php
+include_once 'connect.php';
+session_start();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +21,7 @@
             <p><?php echo $_SESSION['user'];?></p>
         </div>
         <ul>
-            <li><a href="#" class="active">Dashboard</a></li>
+            <li><a href="lndb.php" class="active">Dashboard</a></li>
             <li><a href="lldb.php">Monthly Bills</a></li>
             <li><a href="tenants.php">Tenants</a></li>
             <li><a href="lnlogout.php">Log out</a></li>
