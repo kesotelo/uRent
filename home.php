@@ -53,7 +53,7 @@
 <body>
         <a id="navbar__logo"><img src="urentlogo.png" class="navbar__image"></a>
         <div class="login-options">
-            <a href="lnlogin.php"><img src="landlord-icon.png" alt="Landlord Icon">Landlord</a>
+            <a href="lllogin.php"><img src="landlord-icon.png" alt="Landlord Icon">Landlord</a>
             <a href="tlogin.php"><img src="tenant-icon.png" alt="Tenant Icon">Tenants</a>
         </div>
     </div>

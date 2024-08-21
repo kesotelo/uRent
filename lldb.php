@@ -21,10 +21,10 @@ session_start();
             <p><?php echo $_SESSION['user'];?></p>
         </div>
         <ul>
-            <li><a href="lndb.php" class="active">Dashboard</a></li>
-            <li><a href="lldb.php">Monthly Bills</a></li>
+            <li><a href="lldb.php" class="active">Dashboard</a></li>
+            <li><a href="llmb.php">Monthly Bills</a></li>
             <li><a href="tenants.php">Tenants</a></li>
-            <li><a href="lnlogout.php">Log out</a></li>
+            <li><a href="lllogout.php">Log out</a></li>
         </ul>
     </div>
     

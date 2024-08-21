@@ -17,7 +17,7 @@ if( $num == 1){
 	$_SESSION['user'] = $name;
 	$_SESSION['password'] = $password;
     $_SESSION['id']=$id;
-	header('location:lndb.php');
+	header('location:lldb.php');
 }else{
 	echo '<script>alert("Wrong username or password")</script>';
 	echo '<script>window.location="lnlogin.php"</script>';
