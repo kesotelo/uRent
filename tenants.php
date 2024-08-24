@@ -29,7 +29,9 @@ session_start();
                 <li><a href="lllogout.php">Log out</a></li>
             </ul>
         </div>
+        
         <div class="main-content">
+        <a href="">Add Tenants</a>
             <h2>Tenants</h2>
             <div class="tenant-grid">
                 <div class="tenant-room">
