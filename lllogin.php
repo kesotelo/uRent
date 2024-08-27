@@ -15,7 +15,7 @@
             align-items: center;
             height: 100vh;
             color: #FFFFFF;
-            position: relative; /* Added for positioning the "Back to Home" button */
+            position: relative; /* "Back to Home" button */
         }
         body::before {
             content: '';
@@ -25,13 +25,13 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, #2A2F44 0%, #5B4C69 50%, #E68E8E 100%);/* Gradient background */
-            opacity: 0.6; /* Adjust opacity for desired effect */
-            z-index: -1; /* Make sure the gradient is behind the content */
+            opacity: 0.6; /* opacity */
+            z-index: -1; /* gradient */
         }
 
         .form-container {
             width: 400px;
-            background: #2A2F44; /* Solid background for the form */
+            background: #2A2F44; /* Solid background */
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             overflow: hidden;
