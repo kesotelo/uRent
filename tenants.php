@@ -23,8 +23,8 @@ session_start();
                 <p><?php echo $_SESSION['user'];?></p>
             </div>
             <ul>
-                <li><a href="lndb.php">Dashboard</a></li>
-                <li><a href="lldb.php">Monthly Bills</a></li>
+                <li><a href="lldb.php">Dashboard</a></li>
+                <li><a href="llmb.php">Monthly Bills</a></li>
                 <li><a href="tenants.php" class="active">Tenants</a></li>
                 <li><a href="lllogout.php">Log out</a></li>
             </ul>
