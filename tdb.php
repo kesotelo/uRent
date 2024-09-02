@@ -1,24 +1,32 @@
+<?php
+include_once 'connect.php';
+session_start();
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landlord Dashboard</title>
-    <link rel="stylesheet" href="dbt1.css">
+    <link rel="stylesheet" href="tdb1.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="sidebar">
         <div class="profile">
             <img src="profile-icon.png" alt="Profile Image">
-            <p>Tenants</p>
+            <p><?php echo $_SESSION['user'];?></p>
         </div>
         <ul>
             <li><a href="#" class="active">Dashboard</a></li>
             <li><a href="#">Water Bill</a></li>
             <li><a href="#">Electricity Bill</a></li>
             <li><a href="#">Rent Bill</a></li>
-            <li><a href="#">Log out</a></li>
+            <li><a href="tlogout.php">Log out</a></li>
         </ul>
     </div>
     
@@ -57,6 +65,6 @@
         </div>
     </div>
 
-    <script src="dbt.js"></script>
+    <script src="tdb.js"></script>
 </body>
 </html>
