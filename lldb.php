@@ -16,8 +16,9 @@ session_start();
 </head>
 <body>
     <div class="sidebar">
-        <div class="profile">
-            <img src="profile-icon.png" alt="Profile Image">
+        <div class="URent">
+            <img src="urentlogo.png" alt="logo Image">
+            <p class="logo-text">URent</p>
             <p><?php echo $_SESSION['user'];?></p>
         </div>
         <ul>
