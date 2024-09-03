@@ -16,7 +16,7 @@ body {
 
 body::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -82,10 +82,16 @@ body::before {
 
 
 .main-content {
-    flex-grow: 1;
     background: linear-gradient(135deg, #ccd4e0, #7996c7);
     padding: 20px;
     border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    width: calc(175% - 10px); /* Adjust width to fit next to the sidebar */
+    height: calc(90vh - 100px); /* Adjust height to fit within viewport */
+    margin-left: -200px; /* Align with sidebar */
+    position: relative; /* Keep the main content fixed */
+    top: 30px; /* Align with top of the viewport */
+    overflow-y: auto;
 }
 
 .tenant-grid {
