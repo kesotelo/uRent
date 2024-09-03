@@ -15,8 +15,6 @@ $num = mysqli_num_rows($result);
 	
 if( $num == 1){
 	$_SESSION['user'] = $name;
-	$_SESSION['password'] = $password;
-    $_SESSION['tenant_id']=$id;
 	header('location:tdb.php');
 }else{
 	echo '<script>alert("Wrong username or password")</script>';
