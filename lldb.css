@@ -84,11 +84,12 @@ body::before {
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    width: calc(400% - 10px); /* Adjust width to fit next to the sidebar */
-    height: calc(90vh - 100px); /* Adjust height to fit within viewport */
-    margin-left: -200px; /* Align with sidebar */
-    position: relative; /* Keep the main content fixed */
-    top: 30px; /* Align with top of the viewport */
+    width: calc(84% - 100px); /* Adjust width to fit next to the sidebar */
+    height: calc(90vh - 103px); /* Adjust height to fit within viewport */
+    margin-left: 1px; /* Align with sidebar */
+    position: fixed; /* Keep the main content fixed */
+    top: 104px; /* Align with top of the viewport */
+    left: 328px; /* Position next to the sidebar */
     overflow-y: auto;
 }
 

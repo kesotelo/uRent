@@ -27,6 +27,10 @@ function showPopup(type, roomNumber) {
             popup = document.getElementById('info-popup');
             document.getElementById('room-info').innerText = `Information for Room ${roomNumber}`;
             break;
+        case 'add-tenant':
+            popup = document.getElementById('add-tenant-popup');
+            break;
+            
     }
     popup.style.display = 'flex';
 }
@@ -49,6 +53,9 @@ function closePopup(type) {
         case 'info':
             popup = document.getElementById('info-popup');
             break;
+        case 'add-tenant':
+            popup = document.getElementById('add-tenant-popup');
+            break;     
     }
     popup.style.display = 'none';
 }
@@ -121,4 +128,15 @@ function markAsPaid() {
 
     closePopup('receipt'); 
 }
+
+document.getElementById('add-tenant-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const name = document.getElementById('tenant-name').value;
+    const roomNumber = document.getElementById('tenant-room').value;
+    
+    // Handle adding tenant logic here (e.g., send to server)
+    
+    alert(`Tenant ${tenant-name} added to room ${tenant-room}`);
+    closePopup('add-tenant');
+});
 
