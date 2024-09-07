@@ -4,6 +4,13 @@
 include_once 'connect.php';
 session_start();
 
+// Query to get addtenant data
+$query = "SELECT * FROM addtenant";
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
+    die("Query failed: " . mysqli_error($conn));
+}
 
 ?>
 
@@ -32,9 +39,14 @@ session_start();
         </div>
         
         <div class="main-content">
-        <a href="">Add Tenants</a>
+            <!-- Add Tenants Button Container -->
+            <div class="add-tenants-container">
+                <button class="add-tenants-btn" onclick="showPopup('add-tenant')">Add Tenants</button>
+            </div>
+
             <h2>Tenants</h2>
             <div class="tenant-grid">
+                <!-- Existing tenant-room divs here -->
                 <div class="tenant-room">
                     <p>Room 1</p>
                     <button onclick="showPopup('info', 1)">Information</button>
@@ -42,50 +54,36 @@ session_start();
                     <button onclick="showPopup('water', 1)">Water</button> 
                     <button onclick="showPopup('rental', 1)">Rental</button> 
                 </div>
-                <div class="tenant-room">
-                    <p>Room 2</p>
-                    <button onclick="showPopup('info', 2)">Information</button>
-                    <button onclick="showPopup('electricity', 2)">Electricity</button>
-                    <button onclick="showPopup('water', 2)">Water</button> 
-                    <button onclick="showPopup('rental', 2)">Rental</button> 
-                </div>
-                <div class="tenant-room">
-                    <p>Room 3</p>
-                    <button onclick="showPopup('info', 3)">Information</button>
-                    <button onclick="showPopup('electricity', 3)">Electricity</button>
-                    <button onclick="showPopup('water', 3)">Water</button> 
-                    <button onclick="showPopup('rental', 3)">Rental</button> 
-                </div>
-                <div class="tenant-room">
-                    <p>Room 4</p>
-                    <button onclick="showPopup('info', 4)">Information</button>
-                    <button onclick="showPopup('electricity', 4)">Electricity</button>
-                    <button onclick="showPopup('water', 4)">Water</button> 
-                    <button onclick="showPopup('rental', 4)">Rental</button> 
-                </div>
-                <div class="tenant-room">
-                    <p>Room 5</p>
-                    <button onclick="showPopup('info', 5)">Information</button>
-                    <button onclick="showPopup('electricity', 5)">Electricity</button>
-                    <button onclick="showPopup('water', 5)">Water</button> 
-                    <button onclick="showPopup('rental', 5)">Rental</button> 
-                </div>
-                <div class="tenant-room">
-                    <p>Room 6</p>
-                    <button onclick="showPopup('info', 6)">Information</button>
-                    <button onclick="showPopup('electricity', 6)">Electricity</button>
-                    <button onclick="showPopup('water', 6)">Water</button> 
-                    <button onclick="showPopup('rental', 6)">Rental</button> 
-                </div>
+                <!-- Repeat tenant-room divs for other rooms as needed -->
             </div>
         </div>
     </div>
 
+    <!-- Existing popups -->
     <div id="info-popup" class="popup">
         <div class="popup-content">
             <span class="close-btn" onclick="closePopup('info')">&times;</span>
             <h3>Room Information</h3>
             <p id="room-info"></p>
+        </div>
+    </div>
+
+    <!-- Add the new Add Tenant Popup -->
+    <div id="add-tenant-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup('add-tenant')">&times;</span>
+            <h3>Add New Tenant</h3>
+            <form id="add-tenant-form">
+                <label for="tenant-name">Tenant Name:</label>
+                <input type="text" id="tenant-name" name="tenant-name" required>
+                <label for="Email">Email:</label>
+                <input type="text" id="Email" name="Email" required>
+                <label for="tenant-phone">Phone Number:</label>
+                <input type="int" id="tenant-phone" name="tenant-phone" required>
+                <label for="tenant-room">Room Number:</label>
+                <input type="int" id="tenant-room" name="tenant-room" required>
+                <button type="submit">Add Tenant</button>
+            </form>
         </div>
     </div>
 
