@@ -46,14 +46,17 @@ if (!$result) {
 
             <h2>Tenants</h2>
             <div class="tenant-grid">
-                <!-- Existing tenant-room divs here -->
-                <div class="tenant-room">
-                    <p>Room 1</p>
-                    <button onclick="showPopup('info', 1)">Information</button>
-                    <button onclick="showPopup('electricity', 1)">Electricity</button>
-                    <button onclick="showPopup('water', 1)">Water</button> 
-                    <button onclick="showPopup('rental', 1)">Rental</button> 
-                </div>
+                <!-- Loop through the tenants from the database -->
+                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                    <div class="tenant-room">
+                        <p>Room <?php echo $row['room_num']; ?></p>
+                        <p><?php echo $row['username']; ?></p>
+                        <button onclick="showPopup('info', <?php echo $row['room_num']; ?>)">Information</button>
+                        <button onclick="showPopup('electricity', <?php echo $row['room_num']; ?>)">Electricity</button>
+                        <button onclick="showPopup('water', <?php echo $row['room_num']; ?>)">Water</button>
+                        <button onclick="showPopup('rental', <?php echo $row['room_num']; ?>)">Rental</button>
+                    </div>
+                    <?php } ?>
                 <!-- Repeat tenant-room divs for other rooms as needed -->
             </div>
         </div>
