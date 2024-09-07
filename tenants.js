@@ -131,12 +131,29 @@ function markAsPaid() {
 
 document.getElementById('add-tenant-form').addEventListener('submit', function(event) {
     event.preventDefault();
+
     const name = document.getElementById('tenant-name').value;
+    const email = document.getElementById('Email').value;
+    const phone = document.getElementById('tenant-phone').value;
     const roomNumber = document.getElementById('tenant-room').value;
-    
-    // Handle adding tenant logic here (e.g., send to server)
-    
-    alert(`Tenant ${tenant-name} added to room ${tenant-room}`);
-    closePopup('add-tenant');
+
+    // Send data to the server
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "addtenant.php", true); // Backend URL for adding tenants
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    // Create a query string from the form data
+    const params = `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}&roomNumber=${encodeURIComponent(roomNumber)}`;
+
+    xhr.send(params);
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            alert('Tenant added successfully!');
+            closePopup('add-tenant');
+            // Optionally, you can refresh the tenant list here
+        }
+    };
 });
+
 

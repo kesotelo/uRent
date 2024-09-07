@@ -1,35 +1,23 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 include_once 'connect.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $tenantName = htmlspecialchars($_POST['tenant-name']);
-    $email = htmlspecialchars($_POST['Email']);
-    $phone = htmlspecialchars($_POST['tenant-phone']);
-    $roomNumber = htmlspecialchars($_POST['tenant-room']);
+// Get form data
+$name = $_POST['name'];
+$email = $_POST['email'];
+$phone = $_POST['phone'];
+$roomNumber = $_POST['roomNumber'];
 
-    if (empty($tenantName) || empty($email) || empty($phone) || empty($roomNumber)) {
-        echo 'All fields are required.';
-        exit;
-    }
+// Prepare and execute SQL query
+$query = "INSERT INTO addtenant (tenant_name, email, phone, room_number) VALUES (?, ?, ?, ?)";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("sssi", $name, $email, $phone, $roomNumber);
 
-    $stmt = $conn->prepare("INSERT INTO tenants (tenant_name, email, phone_number, room_number) VALUES (?, ?, ?, ?)");
-    if ($stmt === false) {
-        echo 'Error preparing statement: ' . $conn->error;
-        exit;
-    }
-
-    $stmt->bind_param('ssss', $tenantName, $email, $phone, $roomNumber);
-
-    if ($stmt->execute()) {
-        echo 'Tenant added successfully!';
-    } else {
-        echo 'Error executing statement: ' . $stmt->error;
-    }
-
-    $stmt->close();
-    $conn->close();
+if ($stmt->execute()) {
+    echo "Tenant added successfully!";
+} else {
+    echo "Error: " . $stmt->error;
 }
+
+$stmt->close();
+$conn->close();
 ?>
