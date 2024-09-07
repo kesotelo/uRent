@@ -5,7 +5,7 @@ include_once 'connect.php';
 session_start();
 
 // Query to get addtenant data
-$query = "SELECT * FROM addtenant";
+$query = "SELECT * FROM tenant  ";
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
