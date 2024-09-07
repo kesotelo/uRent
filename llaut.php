@@ -18,7 +18,7 @@ if( $num == 1){
 	header('location:lldb.php');
 }else{
 	echo '<script>alert("Wrong username or password")</script>';
-	echo '<script>window.location="tlogin.php"</script>';
+	echo '<script>window.location="lllogin.php"</script>';
 
 }
 

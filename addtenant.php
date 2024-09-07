@@ -8,7 +8,7 @@ $phone = $_POST['phone'];
 $roomNumber = $_POST['roomNumber'];
 
 // Prepare and execute SQL query
-$query = "INSERT INTO addtenant (tenant_name, email, phone, room_number) VALUES (?, ?, ?, ?)";
+$query = "INSERT INTO tenant (username, email, phone_num, room_num) VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("sssi", $name, $email, $phone, $roomNumber);
 

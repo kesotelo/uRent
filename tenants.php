@@ -1,33 +1,34 @@
+
 <!DOCTYPE html>
 <?php
 include_once 'connect.php';
 session_start();
 
 // Query to get addtenant data
-$query = "SELECT * FROM addtenant"; // Use the correct table name
+$query = "SELECT * FROM tenant";
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
     die("Query failed: " . mysqli_error($conn));
 }
+
 ?>
 
 <html lang="en">
-
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tenants</title>
-    <link rel="stylesheet" href="tenants.css">
+    <link rel="stylesheet" href="tenant.css"> 
 </head>
-
 <body>
     <div class="container">
         <div class="sidebar">
-            <div class="URent">
-                <img src="urentlogo.png" alt="logo Image">
-                <p class="logo-text">URent</p>
-                <p><?php echo $_SESSION['user']; ?></p>
+        <div class="URent">
+            <img src="urentlogo.png" alt="logo Image">
+            <p class="logo-text">URent</p>
+                <p><?php echo $_SESSION['user'];?></p>
             </div>
             <ul>
                 <li><a href="lldb.php">Dashboard</a></li>
@@ -36,7 +37,7 @@ if (!$result) {
                 <li><a href="lllogout.php">Log out</a></li>
             </ul>
         </div>
-
+        
         <div class="main-content">
             <!-- Add Tenants Button Container -->
             <div class="add-tenants-container">
@@ -45,46 +46,44 @@ if (!$result) {
 
             <h2>Tenants</h2>
             <div class="tenant-grid">
-                <!-- Loop through the tenants from the database -->
-                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                    <div class="tenant-room">
-                        <p>Room <?php echo $row['room_number']; ?></p>
-                        <p><?php echo $row['tenant_name']; ?></p>
-                        <button onclick="showPopup('info', <?php echo $row['room_number']; ?>)">Information</button>
-                        <button onclick="showPopup('electricity', <?php echo $row['room_number']; ?>)">Electricity</button>
-                        <button onclick="showPopup('water', <?php echo $row['room_number']; ?>)">Water</button>
-                        <button onclick="showPopup('rental', <?php echo $row['room_number']; ?>)">Rental</button>
-                    </div>
-                <?php } ?>
+                <!-- Existing tenant-room divs here -->
+                <div class="tenant-room">
+                    <p>Room 1</p>
+                    <button onclick="showPopup('info', 1)">Information</button>
+                    <button onclick="showPopup('electricity', 1)">Electricity</button>
+                    <button onclick="showPopup('water', 1)">Water</button> 
+                    <button onclick="showPopup('rental', 1)">Rental</button> 
+                </div>
+                <!-- Repeat tenant-room divs for other rooms as needed -->
             </div>
         </div>
     </div>
 
-    <!-- Add Tenant Popup -->
+    <!-- Existing popups -->
+    <div id="info-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup('info')">&times;</span>
+            <h3>Room Information</h3>
+            <p id="room-info"></p>
+        </div>
+    </div>
+
+    <!-- Add the new Add Tenant Popup -->
     <div id="add-tenant-popup" class="popup">
         <div class="popup-content">
             <span class="close-btn" onclick="closePopup('add-tenant')">&times;</span>
             <h3>Add New Tenant</h3>
             <form id="add-tenant-form">
                 <label for="tenant-name">Tenant Name:</label>
-                <input type="text" id="tenant-name" placeholder="Enter name" name="tenant-name" required>
+                <input type="text" id="tenant-name" name="tenant-name" required autocomplete ="off">
                 <label for="Email">Email:</label>
-                <input type="email" id="Email" placeholder="Enter email" name="Email" required>
+                <input type="text" id="Email" name="Email" required autocomplete ="off">
                 <label for="tenant-phone">Phone Number:</label>
-                <input type="tel" id="tenant-phone" placeholder="Enter phone number" name="tenant-phone" required>
+                <input type="int" id="tenant-phone" name="tenant-phone" required autocomplete ="off">
                 <label for="tenant-room">Room Number:</label>
-                <input type="number" id="tenant-room" placeholder="Enter tenant room" name="tenant-room" required>
+                <input type="int" id="tenant-room" name="tenant-room" required autocomplete ="off">
                 <button type="submit">Add Tenant</button>
             </form>
-        </div>
-    </div>
-
-    <!-- Other popups for Information, Electricity, Water, Rental, and Receipt -->
-    <div id="info-popup" class="popup">
-        <div class="popup-content">
-            <span class="close-btn" onclick="closePopup('info')">&times;</span>
-            <h3>Room Information</h3>
-            <p id="room-info"></p>
         </div>
     </div>
 
