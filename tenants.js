@@ -1,4 +1,4 @@
-function showPopup(type, roomNumber) {
+function showPopup(type, roomNumber, username, email, phone ) {
     let popup;
     switch(type) {
         case 'electricity':
@@ -17,7 +17,7 @@ function showPopup(type, roomNumber) {
             break;
         case 'receipt':
             popup = document.getElementById('receipt-popup');
-            document.getElementById('receipt-room').innerText = `Room ${roomNumber}`;
+            document.getElementById('receipt-room').innerText =  roomNumber;
             document.getElementById('receipt-total').innerText = 
                 document.getElementById('total-bill').innerText || 
                 document.getElementById('water-total-bill').innerText || 
@@ -25,7 +25,10 @@ function showPopup(type, roomNumber) {
             break;
         case 'info':
             popup = document.getElementById('info-popup');
-            document.getElementById('room-info').innerText = `Information for Room ${roomNumber}`;
+            document.getElementById('tenant-name-info').innerText = username;
+            document.getElementById('tenant-email-info').innerText = email;
+            document.getElementById('tenant-phone-info').innerText = phone;
+            document.getElementById('tenant-room-info').innerText = roomNumber;
             break;
         case 'add-tenant':
             popup = document.getElementById('add-tenant-popup');
