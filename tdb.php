@@ -26,6 +26,7 @@ session_start();
             <li><a href="#">Water Bill</a></li>
             <li><a href="#">Electricity Bill</a></li>
             <li><a href="#">Rent Bill</a></li>
+            <li><a href="tas.php">Account Settings</a></li>
             <li><a href="tlogout.php">Log out</a></li>
         </ul>
     </div>

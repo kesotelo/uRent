@@ -51,7 +51,7 @@ if (!$result) {
                     <div class="tenant-room">
                         <p>Room <?php echo $row['room_num']; ?></p>
                         <p><?php echo $row['username']; ?></p>
-                        <button onclick="showPopup('info', <?php echo $row['room_num']; ?>)">Information</button>
+                        <button onclick="showPopup('info', <?php echo $row['room_num    ']; ?>)">Information</button>
                         <button onclick="showPopup('electricity', <?php echo $row['room_num']; ?>)">Electricity</button>
                         <button onclick="showPopup('water', <?php echo $row['room_num']; ?>)">Water</button>
                         <button onclick="showPopup('rental', <?php echo $row['room_num']; ?>)">Rental</button>
