@@ -15,7 +15,7 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <title>Tenants</title>
-    <link rel="stylesheet" href="tenant.css">
+    <link rel="stylesheet" href="tenants.css">
 </head>
 <body>
     <div class="container">
@@ -117,7 +117,7 @@ if (!$result) {
         <div class="popup-content">
             <span class="close-btn" onclick="closePopup('rental')">&times;</span>
             <h3>Rental Bill Calculator</h3>
-            <p>Rent Amount: <input type="number" id="rent-amount" value="5000" /></p>
+            <p>Rent Amount: <input type="number" id="rent-amount" value="0" /></p>
             <p>Total: ₱<span id="rent-total-bill">0.00</span></p>
             <button onclick="showPopup('receipt')">Pay Bills</button>
         </div>
@@ -141,7 +141,7 @@ if (!$result) {
                 </div>
                 <div class="row">
                     <p><strong>Bill To:</strong> <span id="bill-to"></span></p>
-                    <p>Room: <span id="receipt-room"></span></p>
+                    <p><strong>Room:</strong><span id="receipt-room"></span></p>
                 </div>
             </div>
 
