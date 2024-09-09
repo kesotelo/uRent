@@ -13,8 +13,30 @@ $message = "Data changed successfully, logout to apply changes";
 $result = mysqli_query($conn,"SELECT * FROM tenant WHERE tenant_id='" . $_SESSION['id']  ."'");
 $row= mysqli_fetch_array($result);
 ?>
-<html>
+
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>Tenants</title>
+    <link rel="stylesheet" href="tas.css">
+</head>
+<body>
+<div class="container">
+        <div class="sidebar">
+            <div class="URent">
+                <img src="urentlogo.png" alt="logo Image">
+                <p class="logo-text">URent</p>
+                <p><?php echo $_SESSION['user']; ?></p>
+            </div>
+            <ul>
+                <li><a href="php">Dashboard</a></li>
+                <li><a href="php">Water Bill</a></li>
+                <li><a href="php" class="active">Electricity Bill</a></li>
+                <li><a href="php" class="active">Rent Bill</a></li>
+                <li><a href="php" class="active">Account Setting</a></li>
+                <li><a href="php" class="active">Log out</a></li>
+            </ul>
+        </div>
 <title>editacc page</title>
 </head>
 <body>
@@ -41,7 +63,7 @@ Contact Number:<br>
 <br>
 
 <br>
-<input href type="submit" name="submit" value="Submit" class="buttom">
+<input href type="Update Password" name="Update Password" value="Update Password" class="buttom">
 <a href="tlogout.php"> LOGOUT</a>
 
 
