@@ -9,7 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monthly Bills</title>
-    <link rel="stylesheet" href="llmbn.css"> 
+    <link rel="stylesheet" href="llmb.css"> 
 </head>
 <body>
     <div class="container">
@@ -32,26 +32,36 @@ session_start();
         </div>
     </div>
 
-        <div class="main-content">
-            <div id="bills-section">
-                <h2>Monthly Bills</h2>
-                <table id="bills-table">
-                    <!-- The table will be populated by JavaScript -->
-                </table>
-            </div>
+    <div class="main-content">
+        <div id="bills-section">
+            <h2>Monthly Bills</h2>
+            <table id="bills-table">
+                <!-- The table will be populated by JavaScript -->
+            </table>
+        </div>
 
-            <div id="report-section" style="display:none;">
-                <h2>Transaction Report</h2>
-                <table id="report-table">
-                    <!-- Transaction report details will go here -->
-                </table>
-            </div>
+        <div id="report-section" style="display:none;">
+            <h2>Transaction Report</h2>
+            <table id="report-table">
+                <thead>
+                    <tr>
+                        <th>Room Number</th>
+                        <th>Name</th>
+                        <th>Type of Bill</th>
+                        <th>Amount Paid</th>
+                        <th>Date Paid</th>
+                        <th>Proof of Payment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data rows will be populated using JavaScript -->
+                </tbody>
+            </table>
         </div>
     </div>
 
     <script src="lldb.js"></script>
     <script>
-        // JavaScript to handle page selection
         const pageSelect = document.getElementById('page-select');
         const billsSection = document.getElementById('bills-section');
         const reportSection = document.getElementById('report-section');
@@ -63,6 +73,7 @@ session_start();
             } else if (this.value === 'report') {
                 billsSection.style.display = 'none';
                 reportSection.style.display = 'block';
+                loadTransactionReport(); // Load report when "Transaction Report" is selected
             }
         });
     </script>

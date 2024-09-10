@@ -132,3 +132,30 @@ function getBillsData(year, month) {
     };
     return bills[year] && bills[year][month] ? bills[year][month] : [];
 }
+
+
+function loadTransactionReport() {
+    const tableBody = document.querySelector("#report-table tbody");
+    tableBody.innerHTML = '';
+
+    // Example data - Replace this with data fetched from the database
+    const transactions = [
+        {roomNumber: '', name: '', type: '', amount: 1200, date: '', proof: ''},
+        {roomNumber: '', name: '', type: '', amount: 500, date: '', proof: ''},
+        {roomNumber: '', name: '', type: '', amount: 5000, date: '', proof: ''},
+        // Add more transactions here
+    ];
+
+    transactions.forEach(transaction => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${transaction.roomNumber}</td>
+            <td>${transaction.name}</td>
+            <td>${transaction.type}</td>
+            <td>${transaction.amount}</td>
+            <td>${transaction.date}</td>
+            <td><img src="images/${transaction.proof}" alt="Proof of Payment" style="width: 100px; height: 100px;"></td>
+        `;
+        tableBody.appendChild(row);
+    });
+}

@@ -38,14 +38,18 @@ function showPopup(type, roomNumber, username, email, phone) {
             break;
         case 'receipt':
             popup = document.getElementById('receipt-popup');
-            document.getElementById('receipt-room').innerText = roomNumber;
+            
+            // Ensure the tenant name and room number are displayed correctly
+            document.getElementById('receipt-tenant-name').innerText = username || 'N/A';
+            document.getElementById('receipt-room').innerText = roomNumber || 'N/A';
+
+            // Generate current date
+            const currentDate = new Date().toLocaleDateString();
+            document.getElementById('receipt-date').innerText = currentDate;
+
+            // Update receipt total
             updateReceiptTotal();
-              // Generate current date
-              const currentDate = new Date().toLocaleDateString();
-              document.getElementById('receipt-date').innerText = currentDate;
-  
-              updateReceiptTotal();
-              break;
+            break;
         case 'info':
             popup = document.getElementById('info-popup');
             document.getElementById('tenant-name-info').innerText = username;
@@ -123,17 +127,20 @@ function updateReceiptTotal() {
 function markAsPaid() {
     const roomNumber = document.getElementById('receipt-room').innerText;
     const totalAmount = document.getElementById('receipt-total').innerText;
+    const paymentDate = new Date().toLocaleDateString(); // Get the current date
+    const billType = document.querySelector('#receipt-items tr td').innerText; // Determine the bill type (Electricity, Water, or Rental)
 
-    // Send an AJAX request to update the backend
+    // AJAX request to update payment status in the backend
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "update_payment_status.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(`room=${roomNumber}&amount=${totalAmount}&status=Paid`);
+
+    xhr.send(`room=${roomNumber}&amount=${totalAmount}&bill_type=${billType}&status=Paid&payment_date=${paymentDate}`);
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             alert('The bill has been marked as Paid!');
-            loadTable(); // Reload the table if necessary
+            loadTable(); // Reload the table to reflect the updated status
         }
     };
 

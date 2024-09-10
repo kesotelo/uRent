@@ -15,7 +15,7 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <title>Tenants</title>
-    <link rel="stylesheet" href="tenants.css">
+    <link rel="stylesheet" href="tenant.css">
 </head>
 <body>
     <div class="container">
@@ -33,21 +33,19 @@ if (!$result) {
             </ul>
         </div>
         <div class="main-content">
-            <!-- Add Tenants Button Container -->
             <div class="add-tenants-container">
                 <button class="add-tenants-btn" onclick="showPopup('add-tenant')">Add Tenants</button>
             </div>
             <h2>Tenants</h2>
             <div class="tenant-grid">
-                <!-- Loop through the tenants from the database -->
                 <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                     <div class="tenant-room">
                         <p>Room <?php echo $row['room_num']; ?></p>
                         <p><?php echo $row['username']; ?></p>
-                        <button onclick="showPopup('info', <?php echo $row['room_num']; ?>)">Information</button>
-                        <button onclick="showPopup('electricity', <?php echo $row['room_num']; ?>)">Electricity</button>
-                        <button onclick="showPopup('water', <?php echo $row['room_num']; ?>)">Water</button>
-                        <button onclick="showPopup('rental', <?php echo $row['room_num']; ?>)">Rental</button>
+                        <button onclick="showPopup('info', '<?php echo $row['room_num']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['email']; ?>', '<?php echo $row['phone_num']; ?>')">Information</button>
+                        <button onclick="showPopup('electricity', '<?php echo $row['room_num']; ?>')">Electricity</button>
+                        <button onclick="showPopup('water', '<?php echo $row['room_num']; ?>')">Water</button>
+                        <button onclick="showPopup('rental', '<?php echo $row['room_num']; ?>')">Rental</button>
                     </div>
                 <?php } ?>
             </div>
@@ -55,7 +53,6 @@ if (!$result) {
     </div>
 
     <!-- Existing popups -->
-    <!-- Info Popup -->
     <div id="info-popup" class="popup">
         <div class="popup-content">
             <span class="close-btn" onclick="closePopup('info')">&times;</span>
@@ -140,8 +137,8 @@ if (!$result) {
                     <p><strong>Date:</strong> <span id="receipt-date"></span></p>
                 </div>
                 <div class="row">
-                    <p><strong>Bill To:</strong> <span id="bill-to"></span></p>
-                    <p><strong>Room:</strong><span id="receipt-room"></span></p>
+                    <p><strong>Bill To:</strong> <span id="receipt-tenant-name"></span></p>
+                    <p><strong>Room:</strong> <span id="receipt-room"></span></p>
                 </div>
             </div>
 
@@ -155,9 +152,7 @@ if (!$result) {
                         <th>Total</th>
                     </tr>
                 </thead>
-                <tbody id="receipt-items">
-                    <!-- Bill items will be inserted here -->
-                </tbody>
+                <tbody id="receipt-items"></tbody>
             </table>
 
             <div class="totals">
