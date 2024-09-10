@@ -48,22 +48,22 @@ $row= mysqli_fetch_array($result);
 </div>
 
 Name: <br>
-<input type="text" name="username" class="txtField" value="<?php echo $_SESSION['user']; ?>">
+<input type="text" name="username" class="txtField" autocomplete ="off" value="<?php echo $_SESSION['user']; ?>">
 <br>
 Pass:<br>
-<input type="text" name="password" class="txtField" value="<?php echo $_SESSION['password']; ?>">
+<input type="text" name="password" class="txtField" autocomplete ="off" value="<?php echo $_SESSION['password']; ?>">
 <br>
 Email Address:<br>
-<input type="text" name="email" class="txtField" value="<?php echo $_SESSION['email']; ?>">
+<input type="text" name="email" class="txtField" autocomplete ="off" value="<?php echo $_SESSION['email']; ?>">
 <br>
 Contact Number:<br>
-<input type="number" name="phone" value="<?php echo $_SESSION['phone']; ?>">
+<input type="number" name="phone" autocomplete ="off" value="<?php echo $_SESSION['phone']; ?>">
 <br>
 <br>
 <br>
 
 <br>
-<input href type="Update Password" name="Update Password" value="Update Password" class="buttom">
+<input href type="submit" name="Update Password" value="Update Password" class="buttom">
 <a href="tlogout.php"> LOGOUT</a>
 
 

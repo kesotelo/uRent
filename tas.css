@@ -113,7 +113,7 @@ form input[type="number"] {
     margin-top: 5px;
 }
 
-form input[type="Update Password"] {
+form input[type="submit"] {
     background-color: #4e6ca3;
     color: white;
     border: none;
@@ -123,7 +123,7 @@ form input[type="Update Password"] {
     font-size: 16px;
 }
 
-form input[type="Update Password"]:hover {
+form input[type="submit"]:hover {
     background-color: #3b5a82;
 }
 
