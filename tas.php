@@ -29,12 +29,12 @@ $row= mysqli_fetch_array($result);
                 <p><?php echo $_SESSION['user']; ?></p>
             </div>
             <ul>
-                <li><a href="php">Dashboard</a></li>
+                <li><a href="tdb.php">Dashboard</a></li>
                 <li><a href="php">Water Bill</a></li>
                 <li><a href="php" class="active">Electricity Bill</a></li>
                 <li><a href="php" class="active">Rent Bill</a></li>
                 <li><a href="php" class="active">Account Setting</a></li>
-                <li><a href="php" class="active">Log out</a></li>
+                <li><a href="tlogout.php" class="active">Log out</a></li>
             </ul>
         </div>
 <title>editacc page</title>
