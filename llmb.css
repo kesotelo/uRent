@@ -1,16 +1,17 @@
 
+/* General Body Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('bg.png') no-repeat center center fixed; 
-    background-size: cover; 
+    background: url('bg.png') no-repeat center center fixed; /* Background image */
+    background-size: cover; /* Cover the entire viewport */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     color: #FFFFFF;
-    position: relative; 
+    position: relative; /* Position for "Back to Home" button */
 }
 
 body::before {
@@ -20,25 +21,26 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #2A2F44 0%, #5B4C69 50%, #E68E8E 100%); 
-    opacity: 0.8;
-    z-index: -1;
+    background: linear-gradient(135deg, #2A2F44 0%, #5B4C69 50%, #E68E8E 100%); /* Gradient background */
+    opacity: 0.8; /* Adjust opacity for better readability */
+    z-index: -1; /* Keep gradient behind content */
 }
 
+/* Sidebar Styles */
 .sidebar {
     width: 210px;
-    background: linear-gradient(135deg, #2A2F44, #5B4C69); 
+    background: linear-gradient(135deg, #2A2F44, #5B4C69); /* Sidebar gradient */
     color: white;
     height: 100vh;
     padding: 30px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 1.5); 
-    position: fixed; 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Sidebar shadow */
+    position: fixed; /* Fix position */
     left: 0;
     top: 0;
     z-index: 1; 
 }
 
-.URent { 
+.URent {
     display: flex;
     align-items: center;
     margin-bottom: 30px;
@@ -47,7 +49,7 @@ body::before {
 .URent img {
     width: 150px;
     border-radius: 40%;
-    margin-right: -5px; 
+    margin-right: -5px; /* Move image left */
 }
 
 .logo-text {
@@ -59,8 +61,8 @@ body::before {
 
 .sidebar ul {
     list-style-type: none;
-    font-size: 20px; 
     padding: 0;
+    font-size: 20px;
 }
 
 .sidebar ul li {
@@ -95,6 +97,34 @@ body::before {
 
 .month-dropdown {
     margin-bottom: 20px;
+}
+/* Dropdown Select Styling */
+.month-dropdown select {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #5B4C69;
+    color: white;
+    width: 80%; /* Adjust width as needed */
+    font-size: 16px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Hover & Focus Effects */
+.month-dropdown select:hover, .month-dropdown select:focus {
+    background-color: #E68E8E;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+/* Option Styling */
+.month-dropdown select option {
+    background-color: #5B4C69;
+    color: white;
+    padding: 5px;
 }
 
 #bills-table {
