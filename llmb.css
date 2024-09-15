@@ -95,38 +95,39 @@ body::before {
     overflow-y: auto;
 }
 
-.month-dropdown {
-    margin-bottom: 20px;
+.dropdown {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
 }
-/* Dropdown Select Styling */
-.month-dropdown select {
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    color: white;
+    border: 1px solid #4a5f86;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #5B4C69; /* Default background color for the dropdown */
+}
+
+/* Dropdown item styling */
+.dropdown-item {
+    color: white;
+    background: transparent;
     padding: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #5B4C69;
-    color: white;
-    width: 80%; /* Adjust width as needed */
-    font-size: 16px;
-    margin-top: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    outline: none;
-    transition: all 0.3s ease;
 }
 
-/* Hover & Focus Effects */
-.month-dropdown select:hover, .month-dropdown select:focus {
-    background-color: #E68E8E;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+/* Hover effect for the dropdown item - pink color */
+.dropdown-item:hover {
+    background-color: #e68e8e; /* Pink hover effect */
     color: white;
 }
 
-/* Option Styling */
-.month-dropdown select option {
-    background-color: #5B4C69;
+/* Optional: Styling for selected/active state */
+.dropdown-item.active {
+    background-color: #e68e8e; /* Pink color for active item */
     color: white;
-    padding: 5px;
 }
-
 #bills-table {
     width: 100%;
     border-collapse: collapse;

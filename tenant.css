@@ -295,3 +295,6 @@ button{
 .receipt-container button {
     margin-left: 39rem;
 }
+    .text-danger {
+        color: red;
+    }

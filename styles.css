@@ -27,7 +27,7 @@ body::before {
 
 /* Sidebar Styles */
 .sidebar {
-    width: 210px;
+    width: 270px;
     background: linear-gradient(135deg, #2A2F44, #5B4C69); /* Sidebar gradient */
     color: white;
     height: 100vh;
@@ -84,7 +84,6 @@ body::before {
     flex-grow: 1;
     margin-left: 280px; /* Push content right to make space for the sidebar */
     padding: 20px; /* Ensure content has padding */
-
 }
 
 /* Cards Section */
@@ -173,3 +172,5 @@ body::before {
     background-color: #ef4444;
     color: white;
 }
+
+

@@ -23,7 +23,7 @@ session_start();
                 <li><a href="lldb.php">Dashboard</a></li>
                 <div class="month-dropdown">
                 <select id="page-select">
-                    <option value="bills">Monthly Bills</option>
+                    <option value="bills">Monthly Report</option>
                     <option value="report">Transaction Report</option>
                 </select>
                 <li><a href="tenants.php">Tenants</a></li>

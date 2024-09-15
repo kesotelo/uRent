@@ -70,13 +70,13 @@ if (!$result) {
             <span class="close-btn" onclick="closePopup('add-tenant')">&times;</span>
             <h3>Add New Tenant</h3>
             <form id="add-tenant-form">
-                <label for="tenant-name">Tenant Name:</label>
+                <label for="tenant-name">Tenant Name:<span class="text-danger">*</span></label>
                 <input type="text" id="tenant-name" name="tenant-name" required autocomplete="off">
-                <label for="Email">Email:</label>
+                <label for="Email">Email:<span class="text-danger">*</span></label>
                 <input type="text" id="Email" name="Email" required autocomplete="off">
-                <label for="tenant-phone">Phone Number:</label>
+                <label for="tenant-phone">Phone Number:<span class="text-danger">*</span></label>
                 <input type="number" id="tenant-phone" name="tenant-phone" required autocomplete="off">
-                <label for="tenant-room">Room Number:</label>
+                <label for="tenant-room">Room Number:<span class="text-danger">*</span></label>
                 <input type="number" id="tenant-room" name="tenant-room" required autocomplete="off">
                 <button type="submit">Add Tenant</button>
             </form>

@@ -6,18 +6,30 @@
     <title>uRent</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #2A2F44, #5B4C69); /* Gradient background */
+            background: url('bg.png') no-repeat center center fixed; /* Background image */
+            background-size: cover; /* Cover the entire viewport */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #FFFFFF; /* White*/
-            overflow: hidden;
+            color: #FFFFFF;
+            position: relative; /* Position for "Back to Home" button */
         }
 
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2A2F44 0%, #5B4C69 50%, #E68E8E 100%); /* Gradient background */
+            opacity: 0.8; /* Adjust opacity for better readability */
+            z-index: -1; /* Keep gradient behind content */
+        }
         .container {
             display: flex;
             align-items: center;
@@ -35,7 +47,7 @@
         }
 
         #navbar__logo {
-            width: 900px; 
+            width: 850px; 
             margin-right: 30px; 
             transition: transform 0.3s ease;
         }
@@ -61,20 +73,21 @@
         .login-options {
             width: 50%;
             max-width: 400px;
+            margin-right: 70px; 
             text-align: center;
         }
 
         .login-options a {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; 
             background: linear-gradient(135deg, #5B4C69, #717D98); /* Gradient button  */
             color: #FFFFFF; /* Button text color */
             padding: 15px 20px;
             text-decoration: none;
             margin: 10px 0;
             border-radius: 5px;
-            font-size: 20px;
+            font-size: 25px;
             font-weight: bold;
             position: relative;
             overflow: hidden;
