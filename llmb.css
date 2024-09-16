@@ -81,6 +81,54 @@ body::before {
     border-radius: 4px;
 }
 
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.arrow {
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    list-style: none;
+    margin-left: 15px;
+    padding: 0;
+    position: relative; /* Keep it inside the flow of the sidebar */
+}
+
+.dropdown.open .dropdown-menu {
+    display: block; /* Show when dropdown is open */
+}
+
+/* Dropdown Item Styling */
+.dropdown-item {
+    padding: 10px;
+    color: white;
+    background: transparent;
+    text-decoration: none;
+    display: block;
+}
+
+/* Hover effect for the dropdown item */
+.dropdown-item:hover {
+    background-color: #e68e8e; /* Pink hover effect */
+    color: white;
+}
+
+/* Optional: Styling for active/selected state */
+.dropdown-item.active {
+    background-color: #e68e8e; /* Pink color for active item */
+    color: white;
+}
+
 .main-content {
     background: linear-gradient(135deg, #ccd4e0, #7996c7);
     padding: 20px;
@@ -95,77 +143,6 @@ body::before {
     overflow-y: auto;
 }
 
-.dropdown {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 1000;
-}
-
-/* Dropdown menu styling */
-.dropdown-menu {
-    color: white;
-    border: 1px solid #4a5f86;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color: #5B4C69; /* Default background color for the dropdown */
-}
-
-/* Dropdown item styling */
-.dropdown-item {
-    color: white;
-    background: transparent;
-    padding: 10px;
-}
-
-/* Hover effect for the dropdown item - pink color */
-.dropdown-item:hover {
-    background-color: #e68e8e; /* Pink hover effect */
-    color: white;
-}
-
-/* Optional: Styling for selected/active state */
-.dropdown-item.active {
-    background-color: #e68e8e; /* Pink color for active item */
-    color: white;
-}
-#bills-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-#bills-table th, #bills-table td {
-    border: 1px solid #34568b;
-    padding: 10px;
-    text-align: center;
-    
-}
-
-#bills-table th {
-    background: linear-gradient(135deg, #2B3544, #4a5f86);
-    color: white;
-}
-
-.paid {
-    color: green;
-}
-
-.not-paid {
-    color: red;
-}
-
-.month-dropdown {
-    margin: 20px 0;
-}
-
-.month-dropdown select {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #e68e8ece;
-    color: white;
-    width: 100%;
-    font-size: 16px;
-}
 
 #report-table, #bills-table {
     width: 100%;
@@ -191,3 +168,10 @@ body::before {
     color: red;
 }
 
+#transaction-report {
+    display: none; /* Hide transaction report by default */
+}
+
+#monthly-report {
+    display: block; /* Show monthly report by default */
+}

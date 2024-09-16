@@ -21,11 +21,13 @@ session_start();
             </div>
             <ul>
                 <li><a href="lldb.php">Dashboard</a></li>
-                <div class="month-dropdown">
-                <select id="page-select">
-                    <option value="bills">Monthly Report</option>
-                    <option value="report">Transaction Report</option>
-                </select>
+                <li class="dropdown">
+            <a class="dropdown-toggle">Report <span class="arrow">&#9662;</span></a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" data-action="monthly_report">Monthly Report</a></li>
+                <li><a class="dropdown-item" data-action="transaction_report">Transaction Report</a></li>
+            </ul>
+        </li>
                 <li><a href="tenants.php">Tenants</a></li>
                 <li><a href="lllogout.php">Log out</a></li>
             </ul>
@@ -34,13 +36,13 @@ session_start();
 
     <div class="main-content">
         <div id="bills-section">
-            <h2>Monthly Bills</h2>
+            <h2>Monthly Report</h2>
             <table id="bills-table">
                 <!-- The table will be populated by JavaScript -->
             </table>
         </div>
 
-        <div id="report-section" style="display:none;">
+        <div id="report-section">
             <h2>Transaction Report</h2>
             <table id="report-table">
                 <thead>

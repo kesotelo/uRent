@@ -159,3 +159,32 @@ function loadTransactionReport() {
         tableBody.appendChild(row);
     });
 }
+// Dropdown Toggle Functionality
+document.querySelectorAll('.dropdown-toggle').forEach(item => {
+    item.addEventListener('click', function() {
+        const parent = this.parentNode;
+        parent.classList.toggle('open'); // Toggle dropdown visibility
+    });
+});
+
+// Handling Dropdown Item Clicks
+document.querySelectorAll('.dropdown-item').forEach(item => {
+    item.addEventListener('click', function() {
+        const action = this.getAttribute('data-action'); // Get the data-action attribute
+
+        switch (action) {
+            case 'monthly_report':
+                console.log('Monthly Report selected');
+                loadTable(); // Load the bills table for the monthly report
+                document.getElementById('bills-table').style.display = 'table'; // Show bills table
+                document.getElementById('report-table').style.display = 'none'; // Hide report table
+                break;
+            case 'transaction_report':
+                console.log('Transaction Report selected');
+                loadTransactionReport(); // Load the transaction report
+                document.getElementById('bills-table').style.display = 'none'; // Hide bills table
+                document.getElementById('report-table').style.display = 'table'; // Show report table
+                break;
+        }
+    });
+});
