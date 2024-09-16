@@ -16,20 +16,27 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="profile">
-            <img src="profile-icon.png" alt="Profile Image">
-            <p><?php echo $_SESSION['user'];?></p>
-        </div>
-        <ul>
-            <li><a href="#" class="active">Dashboard</a></li>
-            <li><a href="#">Water Bill</a></li>
-            <li><a href="#">Electricity Bill</a></li>
-            <li><a href="#">Rent Bill</a></li>
-            <li><a href="tas.php">Account Settings</a></li>
-            <li><a href="tlogout.php">Log out</a></li>
-        </ul>
+<div class="sidebar">
+    <div class="profile">
+        <img src="profile-icon.png" alt="Profile Image">
+        <p><?php echo $_SESSION['user'];?></p>
     </div>
+    <ul>
+        <li><a href="#" class="active">Dashboard</a></li>
+        <!-- Dropdown Menu for Bills -->
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle">Bills <span class="arrow"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="twb.php">Water Bill</a></li>
+                <li><a href="teb.php">Electricity Bill</a></li>
+                <li><a href="trb.php">Rent Bill</a></li>
+            </ul>
+        </li>
+        <li><a href="tas.php">Account Settings</a></li>
+        <li><a href="tlogout.php">Log out</a></li>
+    </ul>
+</div>
+
     
     <div class="main-content">
         <h1>Dashboard</h1>

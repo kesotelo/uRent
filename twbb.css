@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f4fa;
+    background-color: #6b6c7e;
 }
 
 .sidebar {
@@ -46,105 +46,77 @@ ul li a.active {
 }
 
 .main-content {
-    margin-left: 250px; /* To ensure the main content starts after the sidebar */
+    margin-left: 250px;
     padding: 20px;
-    background-color: #f0f4fa;
+    background-color: #ffffff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    color: white;
 }
 
 h1 {
-    margin-top: 0;
     font-size: 24px;
     color: #1b2d51;
-}
-
-.top-section {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
     margin-bottom: 20px;
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
 }
 
-.monthly-bills, .due-dates {
-    background-color: #e2e6f0;
+.bill-section {
+    display: flex;
+    justify-content: flex-start;
+    gap: 50px;
+}
+
+.bill-card {
+    background-color: #1b2d51;
+    color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    min-width: 300px; /* Ensures a minimum width for the items */
-}
-
-.due-dates {
-    display: flex;
-    flex-direction: column; /* Make sure the items are stacked vertically */
-    gap: 20px;
-}
-
-.due-date-item {
-    background-color: #fff; /* Background color for individual items */
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: 180px;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.due-date-item h3 {
-    margin-top: 0;
+.bill-card h2 {
     font-size: 18px;
-    color: #34568b;
-}
-
-.due-date-item p {
-    margin: 5px 0;
-    color: #ff6f61;
-}
-
-.daily-bills h2 {
-    margin-top: 0;
-}
-
-.chart-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.chart-container {
-    flex: 1;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 32%;
-    text-align: center;
-}
-
-.chart-container h3 {
     margin-bottom: 10px;
-    font-size: 18px;
-    color: #1b2d51;
 }
 
-/* Media query for small screens */
+.bill-card p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.bill-card img {
+    margin-top: 10px;
+    width: 30px;
+}
+
 @media (max-width: 768px) {
-    .top-section {
-        flex-wrap: wrap;
+    .main-content {
+        margin-left: 0;
+        padding: 10px;
     }
 
-    .monthly-bills, .due-dates {
-        min-width: 100%;
-    }
-
-    .chart-row {
+    .bill-section {
         flex-direction: column;
+        align-items: center;
     }
+}
 
-    .chart-container {
-        max-width: 100%;
-    }
+.print-btn {
+    background-color: #1cc88a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.print-btn:hover {
+    background-color: #17a673;
 }
 
 .dropdown {
@@ -196,3 +168,47 @@ h1 {
     transform: rotate(180deg); /* Rotate the arrow when the dropdown is open */
 }
 
+.view-btn {
+    background-color: #1cc88a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.view-btn:hover {
+    background-color: #17a673;
+}
+
+/* Popup Styles */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dim background */
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}

@@ -181,3 +181,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         // Optionally, display an error message to the user
     }
 });
+
+// Dropdown Toggle Logic
+document.addEventListener('DOMContentLoaded', function () {
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdown = document.querySelector('.dropdown');
+
+    dropdownToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        dropdown.classList.toggle('open');
+    });
+});
