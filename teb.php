@@ -32,6 +32,7 @@ session_start();
         </li>
 
         <li><a href="tas.php">Account Settings</a></li>
+        <li><a href="message.php">Message</a></li>
         <li><a href="tlogout.php">Log out</a></li>
     </ul>
 </div>

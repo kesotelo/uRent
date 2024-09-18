@@ -30,11 +30,12 @@ $row= mysqli_fetch_array($result);
             </div>
             <ul>
                 <li><a href="tdb.php">Dashboard</a></li>
-                <li><a href="php">Water Bill</a></li>
-                <li><a href="php" class="active">Electricity Bill</a></li>
-                <li><a href="php" class="active">Rent Bill</a></li>
-                <li><a href="php" class="active">Account Setting</a></li>
-                <li><a href="tlogout.php" class="active">Log out</a></li>
+                <li><a href="twb.php">Water Bill</a></li>
+                <li><a href="teb.php" >Electricity Bill</a></li>
+                <li><a href="trb.php" >Rent Bill</a></li>
+                <li><a href="php" class = "active" >Account Setting</a></li>
+                <li><a href="message.php">Message</a></li>
+                <li><a href="tlogout.php" >Log out</a></li>
             </ul>
         </div>
 <title>editacc page</title>
