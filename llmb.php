@@ -17,7 +17,6 @@ session_start();
             <div class="URent">
                 <img src="urentlogo.png" alt="logo Image">
                 <p class="logo-text">URent</p>
-                <p><?php echo $_SESSION['user'];?></p>
             </div>
             <ul>
                 <li><a href="lldb.php">Dashboard</a></li>
@@ -29,20 +28,19 @@ session_start();
             </ul>
         </li>
                 <li><a href="tenants.php">Tenants</a></li>
-                <li><a href="lllogout.php">Log out</a></li>
             </ul>
         </div>
     </div>
 
     <div class="main-content">
-        <div id="bills-section">
+        <div id="bills-section" style="display:none;">
             <h2>Monthly Report</h2>
             <table id="bills-table">
                 <!-- The table will be populated by JavaScript -->
             </table>
         </div>
 
-        <div id="report-section">
+        <div id="report-section" style="display:none;">
             <h2>Transaction Report</h2>
             <table id="report-table">
                 <thead>

@@ -172,19 +172,17 @@ document.querySelectorAll('.dropdown-item').forEach(item => {
     item.addEventListener('click', function() {
         const action = this.getAttribute('data-action'); // Get the data-action attribute
 
-        switch (action) {
-            case 'monthly_report':
-                console.log('Monthly Report selected');
-                loadTable(); // Load the bills table for the monthly report
-                document.getElementById('bills-table').style.display = 'table'; // Show bills table
-                document.getElementById('report-table').style.display = 'none'; // Hide report table
-                break;
-            case 'transaction_report':
-                console.log('Transaction Report selected');
-                loadTransactionReport(); // Load the transaction report
-                document.getElementById('bills-table').style.display = 'none'; // Hide bills table
-                document.getElementById('report-table').style.display = 'table'; // Show report table
-                break;
+        if (action === 'monthly_report') {
+            console.log('Monthly Report selected');
+            loadTable(); // Load the bills section for the monthly report
+            document.getElementById('bills-section').style.display = 'block'; // Show bills section
+            document.getElementById('report-section').style.display = 'none'; // Hide report section
+        }
+        else if (action === 'transaction_report') {
+            console.log('Transaction Report selected');
+            loadTransactionReport(); // Load the transaction report
+            document.getElementById('bills-section').style.display = 'none'; // Hide bills section
+            document.getElementById('report-section').style.display = 'block'; // Show report section
         }
     });
 });

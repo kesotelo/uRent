@@ -17,9 +17,9 @@ session_start();
 </head>
 <body>
 <div class="sidebar">
-    <div class="profile">
-        <img src="profile-icon.png" alt="Profile Image">
-        <p><?php echo $_SESSION['user'];?></p>
+        <div class="URent">
+            <img src="urentlogo.png" alt="logo Image">
+            <p class="logo-text">URent</p>
     </div>
     <ul>
         <li><a href="#" class="active">Dashboard</a></li>
@@ -32,7 +32,6 @@ session_start();
                 <li><a href="trb.php">Rent Bill</a></li>
             </ul>   
         </li>
-        <li><a href="tas.php">Account Settings</a></li>
         <li><a href="message.php">Message</a></li>
         <li><a href="tlogout.php">Log out</a></li>
     </ul>

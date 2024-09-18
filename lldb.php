@@ -52,20 +52,21 @@ session_start();
         <div class="URent">
             <img src="urentlogo.png" alt="logo Image">
             <p class="logo-text">URent</p>
-            <p><?php echo $_SESSION['user']; ?></p>
         </div>
         <ul>
             <li><a href="lldb.php" class="active">Dashboard</a></li>
-            <li><a href="llmb.php">Monthly Bills</a></li>
+            <li><a href="llmb.php">Report</a></li>
             <li><a href="tenants.php">Tenants</a></li>
         </ul>
     </div>
 
     <div class="main-content">
+    <h2>Tenants</h2>
         <!-- Dropdown in the top right corner -->
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="img" class="rounded-circle" alt="Profile Image">
+                <img src="user icon.png" alt="Profile Image" alt width= "35" height="35" class="rounded circle">
+                <p><?php echo $_SESSION['user'];?></p>
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#accountModal">Profile</a></li>
@@ -146,7 +147,6 @@ session_start();
         </div>
     </div>
 </div>
-
 
         <!-- Top Cards Section -->
         <div class="top-cards">
