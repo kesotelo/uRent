@@ -191,12 +191,7 @@ body::before {
     color: white;
     text-decoration: none;
     display: block;
-    background-color: #1b2d51;
     border-radius: 4px;
-}
-
-.dropdown-menu li a:hover {
-    background-color: #34568b;
 }
 
 /* Show dropdown on toggle */
