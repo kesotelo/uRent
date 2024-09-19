@@ -34,20 +34,28 @@ session_start();
         <li><a href="tlogout.php">Log out</a></li>
     </ul>
 </div>
-
+<?php
+				$query = "SELECT * FROM water where tenant_id ='" . $_SESSION['id']  ."'";
+				$result = mysqli_query($conn, $query);
+				if(mysqli_num_rows($result) > 0)
+				{
+					while($row = mysqli_fetch_array($result))
+					{
+				?>
 <div class="main-content">
     <h1>Water Bill</h1>
 
     <div class="bill-section">
         <div class="bill-card previous-bill">
             <h2>Previous Bill</h2>
-            <p></p> <!-- Fetched previous bill -->
+            <p><?php echo $row["p_bill"]; ?></p> <!-- Fetched previous bill -->
             <p class="payment-date">Date of Payment: </p> <!-- Fetched payment date -->
             <button id="printButton1" class="print-btn">Print</button>
         </div>
 
         <div class="bill-card current-bill">
             <h2>Current Bill</h2>
+            <?php echo $row["n_bill"]; ?>
             <p></p> <!-- Fetched current bill -->
             <p>Detailed Breakdown</p>
             <button id="viewButton" class="view-btn">View</button>
@@ -69,5 +77,9 @@ session_start();
 </div>
 
 <script src="twb.js"></script>
+<?php
+                    }
+}
+?>
 </body>
 </html>
