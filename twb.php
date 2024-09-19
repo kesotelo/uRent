@@ -14,9 +14,9 @@ session_start();
 </head>
 <body>
 <div class="sidebar">
-<div class="URent">
-                <img src="urentlogo.png" alt="logo Image">
-                <p class="logo-text">URent</p>
+    <div class="URent">
+             <img src="urentlogo.png" alt="logo Image">
+            <p class="logo-text">URent</p>
     </div>
     <ul>
         <li><a href="tdb.php">Dashboard</a></li>

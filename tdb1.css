@@ -27,7 +27,7 @@ body::before {
 
 /* Sidebar Styles */
 .sidebar {
-    width: 210px;
+    width: 270px;
     background: linear-gradient(135deg, #2A2F44, #5B4C69); /* Sidebar gradient */
     color: white;
     height: 100vh;
@@ -194,18 +194,18 @@ body::before {
     }
 }
 
-.dropdown {
+.dropdownSide {
     position: relative;
 }
 
-.dropdown-menu {
+.dropdown-menuSide {
     display: none;
     list-style-type: none;
     padding: 0;
     margin-left: 15px;
 }
 
-.dropdown-menu li a {
+.dropdown-menuSide li a {
     padding: 10px 15px;
     color: white;
     text-decoration: none;
@@ -213,17 +213,16 @@ body::before {
     border-radius: 4px;
 }
 
-/* Show dropdown on toggle */
-.dropdown.open .dropdown-menu {
+.dropdownSide.open .dropdown-menuSide {
     display: block;
 }
 
-.dropdown-toggle {
+.dropdown-toggleSide {
     position: relative;
     display: inline-block;
 }
 
-.arrow {
+.arrowSide {
     display: inline-block;
     margin-left: 5px;
     width: 0;
@@ -234,7 +233,6 @@ body::before {
     transition: transform 0.3s ease;
 }
 
-.dropdownSide.open .arrow {
+.dropdownSide.open .arrowSide {
     transform: rotate(180deg); /* Rotate the arrow when the dropdown is open */
 }
-

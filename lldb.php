@@ -44,7 +44,14 @@ session_start();
              background: linear-gradient(135deg, #2B3544, #4a5f86);
              color: white;
         }
-
+        .btn-success{
+            background: linear-gradient(135deg, #2B3544, #4a5f86);
+            color: white;
+        }
+        .btn-cancel{
+            background: linear-gradient(135deg, #2B3544, #4a5f86);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -97,12 +104,6 @@ session_start();
                         </div>
                         <div class="row mb-1">
                             <div class="col">
-                                <small>Contact No. <span class="text-danger">*</span></small>
-                                <input name="contact" required type="number" class="form-control">
-                            </div>
-                        </div>
-                        <div class="row mb-1">
-                            <div class="col">
                                 <small>Email <span class="text-danger">*</span></small>
                                 <input name="aemail" id="" cols="30" rows="3" class="form-control" required>
                             </div>
@@ -111,11 +112,50 @@ session_start();
                     <div class="modal-footer">
                         <button type="button" class="button" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" id="update_account" name="update_account" class="button">Update Account</button>
+                        <button type="button" class="btn-success" data-bs-toggle="modal" data-bs-target="#createAccounts">Create New Account</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+<!-- Create new Account -->
+    <div class="modal fade" id="createAccounts" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5" id="exampleModalLabel">Create New User Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class='bx bx-x' ></i>
+                    </button>
+                </div>
+                <form action="server/queries/query.php" method="post">
+                    <div class="modal-body pl-4 pr-4">
+                        <div class="row mb-2">
+                            <div class="col">
+                                <small>Last Name <span class="text-danger">*</span></small>
+                                <input name="lastname" required type="text" class="form-control">
+                            </div>
+                            <div class="col">
+                                <small>First Name <span class="text-danger">*</span></small>
+                                <input name="firstname" required type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <small>Email Address <span class="text-danger">*</span> <span id="emailBadge"></span></small>
+                                <input name="email" id="txt_email" required type="email" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" id="create_account" name="create-account" class="btn btn-sm btn-success">Create Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 <!-- Change Password Modal -->
 <div class="modal" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
     <div class="modal-dialog">
