@@ -27,7 +27,7 @@ body::before {
 
 /* Sidebar Styles */
 .sidebar {
-    width: 210px;
+    width: 270px;
     background: linear-gradient(135deg, #2A2F44, #5B4C69); /* Sidebar gradient */
     color: white;
     height: 100vh;
@@ -81,7 +81,7 @@ body::before {
 }
 
 /* Main Content Styles */
-.main-content {
+.main-content2 {
     background: linear-gradient(135deg, #ccd4e0, #7996c7);
     padding: 20px;
     border-radius: 15px;
@@ -93,6 +93,29 @@ body::before {
     top: 104px; /* Align with top of the viewport */
     left: 328px; /* Position next to the sidebar */
     overflow-y: auto;
+}
+.main-content {
+    flex-grow: 1;
+    margin-left: 280px; /* Push content right to make space for the sidebar */
+    padding: 20px; /* Ensure content has padding */
+}
+.main-content h2 {
+    color: #FFFFFF;
+}   
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 22px;
+    color: #FFFFFF;
+}
+
+.header p {
+    margin: 5px 0;
 }
 
 .add-tenants-container {
@@ -133,8 +156,6 @@ body::before {
     transition: transform 0.3s ease;
 }
 
-
-
 .tenant-room button {
     margin-top: 10px;
     padding: 10px;
@@ -160,7 +181,7 @@ body::before {
 
 .popup-content {
     position: relative; /* Set relative positioning for the container */
-    background: linear-gradient(135deg, #2B3544, #4a5f86);
+    background: linear-gradient(135deg, #ccd4e0, #7996c7);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -168,7 +189,8 @@ body::before {
 
 .popup-content h3 {
     margin-bottom: 20px;
-    color: white;
+    color: rgb(19, 14, 14);
+    font-size: 20px;
 }
 
 #add-tenant-popup .popup-content {
@@ -202,7 +224,7 @@ body::before {
 
 #add-tenant-popup .popup-content form button {
     padding: 10px 20px;
-    background: linear-gradient(135deg, #2A2F44, #5B4C69);
+    background: linear-gradient(135deg, #2B3544, #4a5f86);
     color: white;
     border: none;
     border-radius: 5px;
@@ -231,9 +253,9 @@ body::before {
     max-width: 700px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    border-radius: 15px;
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    background: linear-gradient(135deg, #c5cfdf, #7996c7);
     color:  #000000;
 }
 
@@ -244,7 +266,9 @@ body::before {
 
 .header h2 {
     margin: 0;
-    font-size: 22px;
+    font-size: 24px;
+    color:  #000000;
+    font-weight: bold; 
 }
 
 .header p {
@@ -288,13 +312,31 @@ button{
     padding: 10px 20px;
     font-size: 14px;
     color: white;
-    background-color: #007bff;
+    background: linear-gradient(135deg, #2B3544, #4a5f86); 
     border: none;
     cursor: pointer;
 }
 .receipt-container button {
-    margin-left: 39rem;
+    margin-left: 37rem;
 }
     .text-danger {
         color: red;
     }
+.top-bar {
+    position: fixed; /* Fixed at the top */
+    top: 0;
+    left: 270px; /* Adjusted to create space between sidebar and top bar */
+    width: calc(100% - 100px); /* Full width minus the space on the left */
+    height: 62px; /* Adjust height as necessary */
+    background-color: #2A2F44; /* Your background color */
+    color: white;
+    z-index: 1000; /* Higher z-index to ensure it's on top */
+    display: flex; /* Flex layout for content alignment */
+    justify-content: space-between; /* Align content to sides */
+    align-items: center; /* Vertically center content */
+    padding: 0 20px; /* Padding for spacing */
+}
+
+
+
+

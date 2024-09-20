@@ -28,7 +28,7 @@ body::before {
 
 /* Sidebar Styles */
 .sidebar {
-    width: 210px;
+    width: 270px;
     background: linear-gradient(135deg, #2A2F44, #5B4C69); /* Sidebar gradient */
     color: white;
     height: 100vh;
@@ -82,21 +82,21 @@ body::before {
 }
 
 /* Dropdown Styles */
-.dropdown {
+.dropdownSide {
     position: relative;
 }
 
-.dropdown-toggle {
+.dropdown-toggleSide {
     cursor: pointer;
 }
 
-.arrow {
+.arrowSide {
     font-size: 12px;
     margin-left: 5px;
 }
 
 /* Dropdown Menu Styling */
-.dropdown-menu {
+.dropdown-menuSide {
     display: none; /* Hidden by default */
     list-style: none;
     margin-left: 15px;
@@ -104,12 +104,12 @@ body::before {
     position: relative; /* Keep it inside the flow of the sidebar */
 }
 
-.dropdown.open .dropdown-menu {
+.dropdown.open .dropdown-menuSide {
     display: block; /* Show when dropdown is open */
 }
 
 /* Dropdown Item Styling */
-.dropdown-item {
+.dropdown-itemSide {
     padding: 10px;
     color: white;
     background: transparent;
@@ -118,18 +118,18 @@ body::before {
 }
 
 /* Hover effect for the dropdown item */
-.dropdown-item:hover {
+.dropdown-itemSide:hover {
     background-color: #e68e8e; /* Pink hover effect */
     color: white;
 }
 
 /* Optional: Styling for active/selected state */
-.dropdown-item.active {
+.dropdown-itemSide.active {
     background-color: #e68e8e; /* Pink color for active item */
     color: white;
 }
 
-.main-content {
+.main-content2 {
     background: linear-gradient(135deg, #ccd4e0, #7996c7);
     padding: 20px;
     border-radius: 15px;
@@ -142,6 +142,9 @@ body::before {
     left: 328px; 
     overflow-y: auto;
 }
+.main-content h2 {
+    color: #FFFFFF;
+}   
 .header {
     text-align: center;
     margin-bottom: 20px;
@@ -187,4 +190,18 @@ body::before {
 
 #monthly-report {
     display: block; /* Show monthly report by default */
+}
+.top-bar {
+    position: fixed; /* Fixed at the top */
+    top: 0;
+    left: 270px; /* Adjusted to create space between sidebar and top bar */
+    width: calc(100% - 100px); /* Full width minus the space on the left */
+    height: 62px; /* Adjust height as necessary */
+    background-color: #2A2F44; /* Your background color */
+    color: white;
+    z-index: 1000; /* Higher z-index to ensure it's on top */
+    display: flex; /* Flex layout for content alignment */
+    justify-content: space-between; /* Align content to sides */
+    align-items: center; /* Vertically center content */
+    padding: 0 20px; /* Padding for spacing */
 }

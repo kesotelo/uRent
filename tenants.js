@@ -16,7 +16,7 @@ function showPopup(type, roomNumber, username, email, phone) {
         case 'water':
             popup = document.getElementById('water-popup');
             document.getElementById('water-current-reading').innerText = '500'; // eto yung sa hardware na need automate
-            document.getElementById('water-previous-reading').innerText = '450';// eto yung sa hardware na need automate
+            document.getElementById('water-previous-reading').innerText = '450'; // eto yung sa hardware na need automate
             document.getElementById('receipt-items').innerHTML = `
                 <tr>
                     <td>Water</td>
@@ -27,7 +27,7 @@ function showPopup(type, roomNumber, username, email, phone) {
             break;
         case 'rental':
             popup = document.getElementById('rental-popup');
-            document.getElementById('rent-amount').value = '5000'; //  rent amount
+            document.getElementById('rent-amount').value = '5000'; // rent amount
             document.getElementById('receipt-items').innerHTML = `
                 <tr>
                     <td>Rental</td>
@@ -61,7 +61,16 @@ function showPopup(type, roomNumber, username, email, phone) {
             popup = document.getElementById('add-tenant-popup');
             break;
     }
+
+    // Display the popup
     popup.style.display = 'flex';
+
+    // Add event listener to close popup when clicking outside the content
+    popup.addEventListener('click', function(event) {
+        if (event.target === popup) {
+            closePopup(type); // Close the popup if clicking outside the popup content
+        }
+    });
 }
 
 function closePopup(type) {
@@ -86,6 +95,8 @@ function closePopup(type) {
             popup = document.getElementById('add-tenant-popup');
             break;
     }
+
+    // Hide the popup
     popup.style.display = 'none';
 }
 
@@ -146,6 +157,7 @@ function markAsPaid() {
 
     closePopup('receipt');
 }
+
 
 // Event listeners
 document.getElementById('peso-per-kwh').addEventListener('input', autoCalculateElectricityBill);

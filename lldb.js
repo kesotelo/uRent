@@ -159,30 +159,30 @@ function loadTransactionReport() {
         tableBody.appendChild(row);
     });
 }
-// Dropdown Toggle Functionality
-document.querySelectorAll('.dropdown-toggle').forEach(item => {
+ // Dropdown Toggle Functionality
+ document.querySelectorAll('.dropdown-toggleSide').forEach(item => {
     item.addEventListener('click', function() {
-        const parent = this.parentNode;
-        parent.classList.toggle('open'); // Toggle dropdown visibility
+        const dropdownMenu = this.nextElementSibling;
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
     });
 });
 
-// Handling Dropdown Item Clicks
-document.querySelectorAll('.dropdown-item').forEach(item => {
+// Handle sidebar dropdown item clicks
+document.querySelectorAll('.dropdown-itemSide').forEach(function(item) {
     item.addEventListener('click', function() {
-        const action = this.getAttribute('data-action'); // Get the data-action attribute
+        var action = this.getAttribute('data-action');
 
+        // Hide both sections first
+        document.getElementById('bills-section').style.display = 'none';
+        document.getElementById('report-section').style.display = 'none';
+
+        // Show the selected section and load the data
         if (action === 'monthly_report') {
-            console.log('Monthly Report selected');
-            loadTable(); // Load the bills section for the monthly report
-            document.getElementById('bills-section').style.display = 'block'; // Show bills section
-            document.getElementById('report-section').style.display = 'none'; // Hide report section
-        }
-        else if (action === 'transaction_report') {
-            console.log('Transaction Report selected');
-            loadTransactionReport(); // Load the transaction report
-            document.getElementById('bills-section').style.display = 'none'; // Hide bills section
-            document.getElementById('report-section').style.display = 'block'; // Show report section
+            document.getElementById('bills-section').style.display = 'block';
+            loadTable();  // Load the bills data
+        } else if (action === 'transaction_report') {
+            document.getElementById('report-section').style.display = 'block';
+            loadTransactionReport();  // Load the transaction report data
         }
     });
 });

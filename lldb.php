@@ -108,12 +108,8 @@ session_start();
                         <form>
                         <div class="row mb-1">
                             <div class="col">
-                                <small>Last Name <span class="text-danger">*</span></small>
-                                <input name="lastname" required type="text" class="form-control">
-                            </div>
-                            <div class="col">
-                                <small>First Name <span class="text-danger">*</span></small>
-                                <input name="firstname" required type="text" class="form-control" >
+                                <small>Username <span class="text-danger">*</span></small>
+                                <input name="username" required type="text" class="form-control">
                             </div>
                         </div>
                         <div class="row mb-1">
@@ -151,12 +147,8 @@ session_start();
                     <div class="modal-body pl-4 pr-4">
                         <div class="row mb-2">
                             <div class="col">
-                                <small>Last Name <span class="text-danger">*</span></small>
-                                <input name="lastname" required type="text" class="form-control">
-                            </div>
-                            <div class="col">
-                                <small>First Name <span class="text-danger">*</span></small>
-                                <input name="firstname" required type="text" class="form-control">
+                                <small>Username <span class="text-danger">*</span></small>
+                                <input name="username" required type="text" class="form-control">
                             </div>
                         </div>
                         <div class="row mb-2">
