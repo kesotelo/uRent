@@ -116,33 +116,29 @@ session_start();
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action = 'tchangeprof.php' method = 'post'>
                         <div class="row mb-1">
                             <div class="col">
-                                <small>Last Name <span class="text-danger">*</span></small>
-                                <input name="lastname" required type="text" class="form-control">
-                            </div>
-                            <div class="col">
-                                <small>First Name <span class="text-danger">*</span></small>
-                                <input name="firstname" required type="text" class="form-control" >
+                                <small>Username <span class="text-danger">*</span></small>
+                                <input name="username" required type="text" class="form-control" autocomplete = "off" >
                             </div>
                         </div>
                         <div class="row mb-1">
                             <div class="col">
                                 <small>Contact No. <span class="text-danger">*</span></small>
-                                <input name="contact" required type="number" class="form-control">
+                                <input name="phone" required type="number" class="form-control" autocomplete = "off"  >
                             </div>
                         </div>
                         <div class="row mb-1">
                             <div class="col">
                                 <small>Email <span class="text-danger">*</span></small>
-                                <input name="aemail" id="" cols="30" rows="3" class="form-control" required>
+                                <input name="email" id="" cols="30" rows="3" class="form-control" autocomplete = "off"  required >
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="button" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" id="update_account" name="update_account" class="button">Update Account</button>
+                        <button type="submit" class="button">Update Account</button>
                     </div>
                 </form>
             </div>
@@ -157,18 +153,18 @@ session_start();
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action = "tchangepw.php" method = "post">
                 <div class="mb-2">
                         <label for="newPassword" class="form-label">Current Password <span class="text-danger">*</span></label>
                         <input id="newPassword" name="password" type="password" class="form-control" required>
                     </div>
                     <div class="mb-2">
                         <label for="newPassword" class="form-label">New Password <span class="text-danger">*</span></label>
-                        <input id="newPassword" name="password" type="password" class="form-control" required>
+                        <input id="newPassword" name="newpassword" type="password" class="form-control" required>
                     </div>
                     <div class="mb-2">
                         <label for="newPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
-                        <input id="newPassword" name="password" type="password" class="form-control" required>
+                        <input id="newPassword" name="conpassword" type="password" class="form-control" required>
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="button" data-bs-dismiss="modal">Cancel</button>
