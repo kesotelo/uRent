@@ -11,26 +11,34 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landlord Dashboard</title>
+    <title>Tenant Dashboard</title>
     <link rel="stylesheet" href="tdb1.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* Dropdown Profile Position and Style */
-        .dropdown {
+/* Dropdown Position and Style */
+.dropdown {
             position: fixed;
             top: 10px;
             right: 10px;
             z-index: 1000;
         }
-
-        .dropdown-menu {
-            background: linear-gradient(135deg, #2A2F44, #5B4C69);
-            color: white;
-            border: 1px solid #4a5f86;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        .btn-secondary {
+            background-color: transparent; /* Transparent background */
+            border: none; /* Remove border */
+            padding: 0; /* Adjust padding if necessary */
         }
 
+        .rounded-circle {
+            margin-right: 10px; /* Space between the image and username */
+            border-radius: 50%; /* Ensure the image stays rounded */
+        }
+
+        .dropdown-menu {
+            background: linear-gradient(135deg, #2A2F44, #5B4C69); /* Keep your original gradient */
+            color: white;
+            padding: 10px; /* Adjust padding if needed */
+        }
         .dropdown-item {
             color: white;
             background: transparent;
@@ -46,6 +54,18 @@ session_start();
         .button {
              background: linear-gradient(135deg, #2B3544, #4a5f86);
              color: white;
+        }
+        .btn-success{
+            background: linear-gradient(135deg, #2A2F44, #5B4C69);
+            color: white;
+        }
+        .btn-success2{
+            background: linear-gradient(135deg, #2B3544, #4a5f86);
+            color: white;
+        }
+        .btn-cancel{
+            background: linear-gradient(135deg, #2B3544, #4a5f86);
+            color: white;
         }
 
     </style>
@@ -67,25 +87,25 @@ session_start();
             </ul>   
         </li>
         <li><a href="message.php">Message</a></li>
-        <li><a href="tlogout.php">Log out</a></li>
     </ul>
 </div>
 
-    
 <div class="main-content">
-    <h1>Dashboard</h1>
-        <!-- Dropdown in the top right corner -->
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="user icon.png" alt="Profile Image" alt width= "35" height="35" class="rounded circle">
-                <p><?php echo $_SESSION['user'];?></p>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#accountModal">Profile</a></li>
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change Password</a></li>
-                <li><a class="dropdown-item" href="lllogout.php">Sign Out</a></li>
-            </ul>
-        </div>
+        <h2>Dashboard</h2>
+            <!-- Dropdown in the top right corner -->
+            <div class="top-bar">
+            <div class="dropdown" style="display: flex; align-items: center;">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent; width: 75px">
+                    <img src="user icon.png" alt="Profile Image" alt width= "35" height="35" class="rounded circle">
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                <p style="font-weight: bold; text-align: center; font-size: 20px"><?php echo $_SESSION['user'];?></p>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#accountModal">Profile</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change Password</a></li>
+                    <li><a class="dropdown-item" href="lllogout.php">Sign Out</a></li>
+                </ul>
+            </div>
+     </div>
 
         <!-- Account Modal -->
         <div class="modal" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">

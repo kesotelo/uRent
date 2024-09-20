@@ -83,10 +83,12 @@ body::before {
     flex-grow: 1;
     margin-left: 280px; /* Push content right to make space for the sidebar */
     margin-top: 300px;
-    padding: 20px; /* Ensure content has padding */
+    padding: 20px; 
 }
 
 .main-content h2 {
+    margin-top: 100px;
+    padding-top: 20px;
     color: #FFFFFF;
 }   
 
@@ -95,9 +97,10 @@ body::before {
     margin-bottom: 20px;
 }
 
-.header h1 {
+.header h2 {
     margin: 0;
     font-size: 22px;
+    color: #FFFFFF;
 }
 
 .header p {
@@ -235,4 +238,18 @@ body::before {
 
 .dropdownSide.open .arrowSide {
     transform: rotate(180deg); /* Rotate the arrow when the dropdown is open */
+}
+.top-bar {
+    position: fixed; /* Fixed at the top */
+    top: 0;
+    left: 270px; /* Adjusted to create space between sidebar and top bar */
+    width: calc(100% - 100px); /* Full width minus the space on the left */
+    height: 62px; /* Adjust height as necessary */
+    background-color: #2A2F44; /* Your background color */
+    color: white;
+    z-index: 1000; /* Higher z-index to ensure it's on top */
+    display: flex; /* Flex layout for content alignment */
+    justify-content: space-between; /* Align content to sides */
+    align-items: center; /* Vertically center content */
+    padding: 0 20px; /* Padding for spacing */
 }
