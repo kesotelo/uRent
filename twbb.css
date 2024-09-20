@@ -27,7 +27,7 @@ body::before {
 
 /* Sidebar Styles */
 .sidebar {
-    width: 210px;
+    width: 270px;
     background: linear-gradient(135deg, #2A2F44, #5B4C69); /* Sidebar gradient */
     color: white;
     height: 100vh;
@@ -80,12 +80,23 @@ body::before {
     border-radius: 4px;
 }
 
-.main-content {
+.main-content2 { /* Bill section */
     flex-grow: 1;
     margin-left: 280px; /* Push content right to make space for the sidebar */
     padding: 20px; /* Ensure content has padding */
+    font-size: 22px;
 }
 
+.main-content { /* h1 and profile*/
+    flex-grow: 1;
+    margin-left: 280px; /* Push content right to make space for the sidebar */
+    margin-top: 150px;
+    padding: 20px; 
+    color: #FFFFFF;
+}
+.main-content h1{
+    font-size: 32px;
+}
 .header {
     text-align: center;
     margin-bottom: 20px;
@@ -93,7 +104,7 @@ body::before {
 
 .header h1 {
     margin: 0;
-    font-size: 22px;
+    color: #FFFFFF;
 }
 
 .header p {
@@ -106,6 +117,7 @@ body::before {
     justify-content: flex-start;
     gap: 50px;
     margin-bottom: 600px;
+    margin-left: -300px;
 }
 
 .bill-card {
@@ -113,9 +125,10 @@ body::before {
     color: #333;
     padding: 20px;
     border-radius: 10px;
-    width: 180px;
+    width: 250px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    
 }
 
 .bill-card h2 {
@@ -124,7 +137,7 @@ body::before {
 }
 
 .bill-card p {
-    font-size: 16px;
+    font-size: 22px;
     margin: 5px 0;
 }
 
@@ -160,18 +173,18 @@ body::before {
     background-color: #17a673;
 }
 
-.dropdown {
+.dropdownSide {
     position: relative;
 }
 
-.dropdown-menu {
+.dropdown-menuSide {
     display: none;
     list-style-type: none;
     padding: 0;
     margin-left: 15px;
 }
 
-.dropdown-menu li a {
+.dropdown-menuSide li a {
     padding: 10px 15px;
     color: white;
     text-decoration: none;
@@ -180,16 +193,16 @@ body::before {
 }
 
 /* Show dropdown on toggle */
-.dropdown.open .dropdown-menu {
+.dropdownSide.open .dropdown-menuSide {
     display: block;
 }
 
-.dropdown-toggle {
+.dropdown-toggleSide {
     position: relative;
     display: inline-block;
 }
 
-.arrow {
+.arrowSide {
     display: inline-block;
     margin-left: 5px;
     width: 0;
@@ -200,7 +213,7 @@ body::before {
     transition: transform 0.3s ease;
 }
 
-.dropdown.open .arrow {
+.dropdownSide.open .arrowSide {
     transform: rotate(180deg); /* Rotate the arrow when the dropdown is open */
 }
 
@@ -247,4 +260,18 @@ body::before {
     right: 10px;
     font-size: 24px;
     cursor: pointer;
+}
+.top-bar {
+    position: fixed; /* Fixed at the top */
+    top: 0;
+    left: 270px; /* Adjusted to create space between sidebar and top bar */
+    width: calc(100% - 100px); /* Full width minus the space on the left */
+    height: 62px; /* Adjust height as necessary */
+    background-color: #2A2F44; /* Your background color */
+    color: white;
+    z-index: 1000; /* Higher z-index to ensure it's on top */
+    display: flex; /* Flex layout for content alignment */
+    justify-content: space-between; /* Align content to sides */
+    align-items: center; /* Vertically center content */
+    padding: 0 20px; /* Padding for spacing */
 }

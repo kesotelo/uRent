@@ -27,7 +27,7 @@ body::before {
 
 /* Sidebar Styles */
 .sidebar {
-    width: 210px;
+    width: 270px;
     background: linear-gradient(135deg, #2A2F44, #5B4C69); /* Sidebar gradient */
     color: white;
     height: 100vh;
@@ -80,15 +80,21 @@ body::before {
     border-radius: 4px;
 }
 
-.main-content {
+.main-content2 { /* message section */
     margin-left: 250px;
+    margin-top: 50px;
     padding: 20px;
-    min-height: 100vh;
+    min-height: 50vh;
     display: flex;
     flex-direction: column;
     color: white;
 }
-
+.main-content h1 { /*h1 and profile dropdown*/
+    font-size: 32px;
+    color: #FFFFFF;
+    margin-top: -200px;
+    margin-left: -53px;
+}
 .header {
     text-align: center;
     margin-bottom: 20px;
@@ -96,12 +102,13 @@ body::before {
 
 .header h1 {
     margin: 0;
-    font-size: 22px;
+    color: #FFFFFF;
 }
 
 .header p {
     margin: 5px 0;
 }
+
 .create-btn {
     background: linear-gradient(135deg,#ccd4e0, #7996c7);
     color: rgb(15, 12, 12);
@@ -175,18 +182,18 @@ body::before {
     background-color: #17a673;
 }
 
-.dropdown {
+.dropdownSide {
     position: relative;
 }
 
-.dropdown-menu {
+.dropdown-menuSide {
     display: none;
     list-style-type: none;
     padding: 0;
     margin-left: 15px;
 }
 
-.dropdown-menu li a {
+.dropdown-menuSide li a {
     padding: 10px 15px;
     color: white;
     text-decoration: none;
@@ -195,16 +202,16 @@ body::before {
 }
 
 /* Show dropdown on toggle */
-.dropdown.open .dropdown-menu {
+.dropdownSide.open .dropdown-menuSide {
     display: block;
 }
 
-.dropdown-toggle {
+.dropdown-toggleSide {
     position: relative;
     display: inline-block;
 }
 
-.arrow {
+.arrowSide {
     display: inline-block;
     margin-left: 5px;
     width: 0;
@@ -215,7 +222,7 @@ body::before {
     transition: transform 0.3s ease;
 }
 
-.dropdown.open .arrow {
+.dropdownSide.open .arrowSide {
     transform: rotate(180deg); /* Rotate the arrow when the dropdown is open */
 }
 
@@ -314,6 +321,20 @@ body::before {
 .error {
     color: red;
     margin-top: 10px;
+}
+.top-bar {
+    position: fixed; /* Fixed at the top */
+    top: 0;
+    left: 270px; /* Adjusted to create space between sidebar and top bar */
+    width: calc(100% - 100px); /* Full width minus the space on the left */
+    height: 62px; /* Adjust height as necessary */
+    background-color: #2A2F44; /* Your background color */
+    color: white;
+    z-index: 1000; /* Higher z-index to ensure it's on top */
+    display: flex; /* Flex layout for content alignment */
+    justify-content: space-between; /* Align content to sides */
+    align-items: center; /* Vertically center content */
+    padding: 0 20px; /* Padding for spacing */
 }
 
 

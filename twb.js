@@ -89,3 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     main(); // Call the main function to execute the flow
 });
+function toggleDropdown() {
+    var dropdown = document.querySelector('.dropdownSide');
+    dropdown.classList.toggle('open');
+}
