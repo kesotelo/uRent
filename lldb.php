@@ -75,7 +75,7 @@ session_start();
         <ul>
             <li><a href="lldb.php" class="active">Dashboard</a></li>
             <li><a href="llmb.php">Report</a></li>
-            <li><a href="tenants.php">Tenants</a></li>
+            <li><a href="tenants.php">Tenants</a></li>  
         </ul>
     </div>
 

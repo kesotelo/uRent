@@ -181,18 +181,18 @@ if (!$result) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action = 'llchangepass.php' method ='post'>
                 <div class="mb-2">
                         <label for="newPassword" class="form-label">Current Password <span class="text-danger">*</span></label>
                         <input id="newPassword" name="password" type="password" class="form-control" required>
                     </div>
                     <div class="mb-2">
                         <label for="newPassword" class="form-label">New Password <span class="text-danger">*</span></label>
-                        <input id="newPassword" name="password" type="password" class="form-control" required>
+                        <input id="newPassword" name="newpassword" type="password" class="form-control" required>
                     </div>
                     <div class="mb-2">
                         <label for="newPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
-                        <input id="newPassword" name="password" type="password" class="form-control" required>
+                        <input id="newPassword" name="conpassword" type="password" class="form-control" required>
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="button" data-bs-dismiss="modal">Cancel</button>

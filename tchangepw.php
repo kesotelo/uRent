@@ -12,11 +12,12 @@ $p = "SELECT * from tenant where password = '$password'";
 $result = mysqli_query($conn, $p);
 $num = mysqli_num_rows($result);
 
-if($new_pass !== $con_pass){
-    echo '<script>alert("New password and Confirm password does not match")</script>';
-    echo '<script>window.location="tdb.php"</script>';
-}else if($num !== 1){
+if($num !== 1 ){
     echo '<script>alert("Wrong password")</script>';
+    
+    echo '<script>window.location="tdb.php"</script>';
+}else if($new_pass !== $con_pass){
+    echo '<script>alert("New password and Confirm password does not match")</script>';
     echo '<script>window.location="tdb.php"</script>';
 }else{
     $sel = "SELECT * from tenant where tenant_id = '$id' AND password = '$password' ";
