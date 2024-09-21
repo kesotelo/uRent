@@ -14,6 +14,8 @@ $num = mysqli_num_rows($result);
 
 	
 if( $num == 1){
+	$row = mysqli_fetch_assoc($result);
+	$_SESSION['id']=$row['id'];
 	$_SESSION['user'] = $name;
 	header('location:lldb.php');
 }else{
