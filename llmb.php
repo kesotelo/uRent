@@ -216,20 +216,20 @@ session_start();
         <div id="report-section" style="display:none;">
             <h2>Transaction Report</h2>
             <table id="report-table">
-                <thead>
-                    <tr>
-                        <th>Room Number</th>
-                        <th>Name</th>
-                        <th>Type of Bill</th>
-                        <th>Amount Paid</th>
-                        <th>Date Paid</th>
-                        <th>Proof of Payment</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Data rows will be populated using JavaScript -->
-                </tbody>
-            </table>
+    <thead>
+        <tr>
+            <th>Room Number</th>
+            <th>Tenant Name</th>
+            <th>Bill Type</th>
+            <th>Amount Paid</th>
+            <th>Date Paid</th>
+            <th>Proof of Payment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Rows will be dynamically inserted here -->
+    </tbody>
+</table>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

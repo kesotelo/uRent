@@ -16,7 +16,7 @@ function showPopup(type, roomNumber, username, email, phone) {
         case 'water':
             popup = document.getElementById('water-popup');
             document.getElementById('water-current-reading').innerText = '500'; // eto yung sa hardware na need automate
-            document.getElementById('water-previous-reading').innerText = '450'; // eto yung sa hardware na need automate
+            document.getElementById('water-previous-reading').innerText = '450';// eto yung sa hardware na need automate
             document.getElementById('receipt-items').innerHTML = `
                 <tr>
                     <td>Water</td>
@@ -27,7 +27,7 @@ function showPopup(type, roomNumber, username, email, phone) {
             break;
         case 'rental':
             popup = document.getElementById('rental-popup');
-            document.getElementById('rent-amount').value = '5000'; // rent amount
+            document.getElementById('rent-amount').value = '5000'; //  rent amount
             document.getElementById('receipt-items').innerHTML = `
                 <tr>
                     <td>Rental</td>
@@ -38,18 +38,14 @@ function showPopup(type, roomNumber, username, email, phone) {
             break;
         case 'receipt':
             popup = document.getElementById('receipt-popup');
-            
-            // Ensure the tenant name and room number are displayed correctly
-            document.getElementById('receipt-tenant-name').innerText = username || 'N/A';
-            document.getElementById('receipt-room').innerText = roomNumber || 'N/A';
-
-            // Generate current date
-            const currentDate = new Date().toLocaleDateString();
-            document.getElementById('receipt-date').innerText = currentDate;
-
-            // Update receipt total
+            document.getElementById('receipt-room').innerText = roomNumber;
             updateReceiptTotal();
-            break;
+              // Generate current date
+              const currentDate = new Date().toLocaleDateString();
+              document.getElementById('receipt-date').innerText = currentDate;
+  
+              updateReceiptTotal();
+              break;
         case 'info':
             popup = document.getElementById('info-popup');
             document.getElementById('tenant-name-info').innerText = username;
@@ -61,16 +57,7 @@ function showPopup(type, roomNumber, username, email, phone) {
             popup = document.getElementById('add-tenant-popup');
             break;
     }
-
-    // Display the popup
     popup.style.display = 'flex';
-
-    // Add event listener to close popup when clicking outside the content
-    popup.addEventListener('click', function(event) {
-        if (event.target === popup) {
-            closePopup(type); // Close the popup if clicking outside the popup content
-        }
-    });
 }
 
 function closePopup(type) {
@@ -95,8 +82,6 @@ function closePopup(type) {
             popup = document.getElementById('add-tenant-popup');
             break;
     }
-
-    // Hide the popup
     popup.style.display = 'none';
 }
 
@@ -138,52 +123,22 @@ function updateReceiptTotal() {
 function markAsPaid() {
     const roomNumber = document.getElementById('receipt-room').innerText;
     const totalAmount = document.getElementById('receipt-total').innerText;
-    const paymentDate = new Date().toISOString().split('T')[0]; // Returns YYYY-MM-DD
-    const billType = document.querySelector('#receipt-items tr td').innerText; // Determine the bill type (Electricity, Water, or Rental)
 
-    const receiptContainer = document.querySelector('.receipt-container');
+    // Send an AJAX request to update the backend
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "update_payment_status.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(`room=${roomNumber}&amount=${totalAmount}&status=Paid`);
 
-    // Temporarily convert to grayscale for black-and-white PDF export
-    receiptContainer.style.filter = 'grayscale(100%)';
-
-    const options = {
-        margin: 1,
-        filename: `receipt_${roomNumber}_${paymentDate}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            alert('The bill has been marked as Paid!');
+            loadTable(); // Reload the table if necessary
+        }
     };
 
-    // Generate PDF and send it to the backend
-    html2pdf().from(receiptContainer).set(options).output('blob').then(function(pdfBlob) {
-        // Reset grayscale effect after saving
-        receiptContainer.style.filter = '';
-
-        // Create FormData to send PDF and payment data to the backend
-        const formData = new FormData();
-        formData.append('pdf', pdfBlob, `receipt_${roomNumber}_${paymentDate}.pdf`);
-        formData.append('room_number', roomNumber);
-        formData.append('amount', totalAmount);
-        formData.append('bill_type', billType);
-        formData.append('payment_date', paymentDate);
-
-        // Send the data and PDF via AJAX
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "save_payment.php", true);
-        xhr.send(formData);
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                alert('The bill has been marked as Paid and saved!');
-                loadTable(); // Reload the table to reflect the updated status
-                closePopup('receipt');
-            }
-        };
-    });
+    closePopup('receipt');
 }
-
-
-
 
 // Event listeners
 document.getElementById('peso-per-kwh').addEventListener('input', autoCalculateElectricityBill);
