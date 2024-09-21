@@ -266,6 +266,7 @@ body::before {
     text-align: right;
     font-size: 12px;
     color: #999;
+    
 }
 
 /* Popup Styles */
@@ -279,14 +280,15 @@ body::before {
     background-color: rgba(0, 0, 0, 0.5); /* Dim background */
     justify-content: center;
     align-items: center;
+    color:rgb(27, 19, 19);
 }
 
 .popup-content {
-    background-color: white;
+    background: linear-gradient(135deg,#ccd4e0, #7996c7);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    width: 400px;
+    width: 450px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -299,7 +301,7 @@ body::before {
 }
 
 .send-btn {
-    background-color: #1cc88a;
+    background: linear-gradient(135deg, #2B3544, #4a5f86);
     color: white;
     padding: 10px 20px;
     border: none;
