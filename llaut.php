@@ -13,16 +13,16 @@ $result = mysqli_query($conn, $s);
 $num = mysqli_num_rows($result);
 
 	
-if( $num == 1){
-	$row = mysqli_fetch_assoc($result);
-	$_SESSION['id']=$row['id'];
-	$_SESSION['user'] = $name;
-	header('location:lldb.php');
-}else{
-	echo '<script>alert("Wrong username or password")</script>';
-	echo '<script>window.location="lllogin.php"</script>';
-
+if ($num == 1) {
+    $landlord = mysqli_fetch_assoc($result); // Fetch landlord's data
+    $_SESSION['unique_id'] = $landlord['id']; // Set unique ID for landlord
+    $_SESSION['user'] = $name; // Set username
+    header('location: lldb.php');
+} else {
+    echo '<script>alert("Wrong username or password")</script>';
+    echo '<script>window.location="lllogin.php"</script>';
 }
+
 
 
 ?>

@@ -7,6 +7,21 @@ if (!isset($_SESSION['unique_id'])) {
     echo "<script>alert('Please log in first.'); window.location='tlogin.php';</script>";
     exit();
 }
+
+$user_id = $_SESSION['unique_id']; // Logged in tenant's unique ID
+$landlord_id = 1; // Assuming the landlord's unique_id is 1
+
+// Fetch messages between the tenant and the landlord
+$messages_query = mysqli_query($conn, "
+    SELECT * 
+    FROM messages 
+    WHERE (sender_id = '$user_id' AND receiver_id = '$landlord_id') 
+       OR (sender_id = '$landlord_id' AND receiver_id = '$user_id') 
+    ORDER BY created_at ASC
+");
+
+// Fetch all landlords
+$landlords_query = mysqli_query($conn, "SELECT id, username FROM landlord");
 ?>
 
 
@@ -44,17 +59,38 @@ if (!isset($_SESSION['unique_id'])) {
     </ul>
 </div>
 
+
 <div class="main-content">
     <h1>Chat with Landlord</h1>
 
-    <!-- Display Previous Messages -->
+    <h2>Select a Landlord to Chat</h2>
+    <form action="" method="GET">
+        <select name="landlord_id" onchange="this.form.submit()">
+            <option value="">-- Select a Landlord --</option>
+            <?php while ($landlord = mysqli_fetch_assoc($landlords_query)): ?>
+                <option value="<?php echo $landlord['id']; ?>">
+                    <?php echo $landlord['username']; ?>
+                </option>
+            <?php endwhile; ?>
+        </select>
+    </form>
+
+    <?php
+    if (isset($_GET['landlord_id'])) {
+        $landlord_id = $_GET['landlord_id'];
+
+        // Fetch messages between the tenant and the selected landlord
+        $messages_query = mysqli_query($conn, "
+            SELECT * 
+            FROM messages 
+            WHERE (sender_id = '$user_id' AND receiver_id = '$landlord_id') 
+               OR (sender_id = '$landlord_id' AND receiver_id = '$user_id') 
+            ORDER BY created_at ASC
+        ");
+    ?>
+
     <div class="chat-history">
         <?php
-        $user_id = $_SESSION['unique_id']; // Logged in tenant's unique ID
-
-        // Fetch messages between the tenant and the landlord
-        $messages_query = mysqli_query($conn, "SELECT * FROM messages WHERE receiver_id = '$user_id' OR sender_id = '$user_id' ORDER BY created_at ASC");
-
         if (mysqli_num_rows($messages_query) > 0) {
             while ($message_row = mysqli_fetch_assoc($messages_query)) {
                 $sender_name = $message_row['sender_id'] == $user_id ? 'You' : 'Landlord';
@@ -77,18 +113,18 @@ if (!isset($_SESSION['unique_id'])) {
         <div class="popup-content">
             <span class="close-btn" onclick="closePopup()">&times;</span>
             <h2>Create New Message</h2>
-            <!-- Form to send message -->
             <form action="send_message.php" method="POST">
                 <label for="message">Message</label>
                 <textarea id="message" name="message" rows="4" cols="50" placeholder="Write your message here..." required></textarea><br><br>
+                <input type="hidden" name="receiver_id" value="<?php echo $landlord_id; ?>">
                 <button type="submit" class="send-btn">Send</button>
             </form>
         </div>
     </div>
+
+    <?php } ?>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="twb.js"></script>
 <script>
     function showPopup() {
         document.getElementById('messagePopup').style.display = 'flex';

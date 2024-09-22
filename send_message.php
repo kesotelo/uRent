@@ -8,17 +8,19 @@ if (!isset($_SESSION['unique_id'])) {
     exit();
 }
 
-if (isset($_POST['message'])) {
+if (isset($_POST['message'], $_POST['receiver_id'])) {
     $message = mysqli_real_escape_string($conn, $_POST['message']);
-    $sender_id = $_SESSION['unique_id']; // Currently logged-in user
-    $receiver_id = 1; // Assume landlord unique_id is 1 for example
+    $sender_id = $_SESSION['unique_id']; // Currently logged-in tenant
+    $receiver_id = $_POST['receiver_id']; // Landlord's ID
 
     if (!empty($message)) {
         $query = "INSERT INTO messages (sender_id, receiver_id, message, created_at) VALUES ('$sender_id', '$receiver_id', '$message', NOW())";
         if (mysqli_query($conn, $query)) {
-            header("Location: message.php");
+            header("Location: message.php?landlord_id=$receiver_id");
         } else {
-            echo "Error: " . mysqli_error($conn);
+            echo "Error sending message: " . mysqli_error($conn);
         }
+    } else {
+        echo "<script>alert('Message cannot be empty.'); window.location='message.php';</script>";
     }
 }
