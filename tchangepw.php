@@ -5,7 +5,7 @@ session_start();
 $password = $_POST['password'];
 $new_pass = $_POST['newpassword'];
 $con_pass = $_POST['conpassword'];
-$id = $_SESSION['id'];
+$id = $_SESSION['unique_id'];
 
 $p = "SELECT * from tenant where password = '$password'";
 

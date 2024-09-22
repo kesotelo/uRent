@@ -5,7 +5,7 @@ session_start();
 $user = $_POST['username'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
-$id = $_SESSION['id'];
+$id = $_SESSION['unique_id'];
 
 $update = "SELECT * FROM tenant WHERE tenant_id = '$id'";
 
