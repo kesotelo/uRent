@@ -83,6 +83,7 @@ session_start();
             </ul>
         </li>
                 <li><a href="tenants.php">Tenants</a></li>
+                <li><a href="messagell.php">Messages</a></li>  
             </ul>
         </div>
     </div>

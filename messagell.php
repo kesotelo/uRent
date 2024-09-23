@@ -78,6 +78,7 @@ $landlord_id = $_SESSION['unique_id'];
 
     <!-- Popup to send a new message -->
     <?php if (isset($_GET['tenant_id'])): ?>
+        
     <div id="messagePopup" class="popup">
         <div class="popup-content">
             <h2>Send a Message to Tenant</h2>

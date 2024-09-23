@@ -76,6 +76,7 @@ session_start();
             <li><a href="lldb.php" class="active">Dashboard</a></li>
             <li><a href="llmb.php">Report</a></li>
             <li><a href="tenants.php">Tenants</a></li>  
+            <li><a href="messagell.php">Messages</a></li>  
         </ul>
     </div>
 

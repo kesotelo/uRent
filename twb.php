@@ -90,7 +90,7 @@ session_start();
 </div>
 
 <?php
-				$query = "SELECT * FROM water where tenant_id ='" . $_SESSION['id']  ."'";
+				$query = "SELECT * FROM water where tenant_id ='" . $_SESSION['unique_id']  ."'";
 				$result = mysqli_query($conn, $query);
 				if(mysqli_num_rows($result) > 0)
 				{

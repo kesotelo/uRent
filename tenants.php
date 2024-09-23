@@ -83,6 +83,7 @@ if (!$result) {
                 <li><a href="lldb.php">Dashboard</a></li>
                 <li><a href="llmb.php">Report</a></li>
                 <li><a href="tenants.php" class="active">Tenants</a></li>
+                <li><a href="messagell.php">Messages</a></li>  
             </ul>
         </div>
         <div class="main-content">
