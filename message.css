@@ -81,8 +81,8 @@ body::before {
 }
 
 .main-content2 { /* message section */
-    margin-left: 250px;
-    margin-top: 50px;
+    margin-left: 450x;
+    margin-top: 250px;
     padding: 20px;
     min-height: 50vh;
     display: flex;

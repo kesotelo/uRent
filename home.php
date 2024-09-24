@@ -157,8 +157,8 @@
             <img src="urentlogo.png" alt="uRent Logo">
         </div>
         <div class="login-options">
-            <a href="lllogin.php"><img src="landlord-icon.png" alt="Landlord Icon"><span>Landlord</span></a>
-            <a href="tlogin.php"><img src="tenant-icon.png" alt="Tenant Icon"><span>Tenants</span></a>
+            <a href="lllogin.php"><img src="landlord.png" alt="Landlord Icon" alt width= "40" height="40" class="rounded circle"><span>Landlord</span></a>
+            <a href="tlogin.php"><img src="tenant.png" alt="Tenant Icon" alt width= "40" height="40" class="rounded circle"><span>Tenants</span></a>
         </div>
     </div>
 

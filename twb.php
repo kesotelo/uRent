@@ -103,7 +103,7 @@ session_start();
      <div class="top-bar">
             <div class="dropdown" style="display: flex; align-items: center;">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent; width: 75px">
-                    <img src="user icon.png" alt="Profile Image" alt width= "35" height="35" class="rounded circle">
+                    <img src="user icon.png" alt="Profile Image" alt width= "40" height="40" class="rounded circle">
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                 <p style="font-weight: bold; text-align: center; font-size: 20px"><?php echo $_SESSION['user'];?></p>
