@@ -111,7 +111,7 @@ $landlords_query = mysqli_query($conn, "SELECT id, username FROM landlord");
 </div>
 
 <div class="main-content">
-    <h1>Electricity Bill</h1>
+<h1>Chat with Landlord</h1>
          <!-- Dropdown in the top right corner -->
          <div class="top-bar">
             <div class="dropdown" style="display: flex; align-items: center;">
@@ -196,7 +196,6 @@ $landlords_query = mysqli_query($conn, "SELECT id, username FROM landlord");
     </div>
 </div>
 <div class="main-content2">
-    <h1>Chat with Landlord</h1>
 
     <h2>Select a Landlord to Chat</h2>
     <form action="" method="GET">

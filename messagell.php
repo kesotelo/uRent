@@ -88,7 +88,7 @@ $landlord_id = $_SESSION['unique_id'];
                 <li><a href="messagell.php" class="active">Message</a></li>
 </div>
 <div class="main-content">
-    <h1>Electricity Bill</h1>
+       <h1>Chat with Tenants</h1>
          <!-- Dropdown in the top right corner -->
          <div class="top-bar">
             <div class="dropdown" style="display: flex; align-items: center;">
@@ -173,7 +173,6 @@ $landlord_id = $_SESSION['unique_id'];
     </div>
 </div>
 <div class="main-content2">
-    <h1>Chat with Tenants</h1>
 
     <!-- Display Tenant List -->
     <div class="tenant-list">
