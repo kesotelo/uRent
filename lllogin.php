@@ -139,11 +139,11 @@
             <h2>Landlord Login</h2>
             <form action="llaut.php" method="post">
                 <div class="form-group">
-                    <img src="user-icon.png" alt="User Icon">
+                    <img src="user.png" alt="User Icon">
                     <input type="text" name="user" placeholder="Username" required autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <img src="lock-icon.png" alt="Lock Icon">
+                    <img src="pass.png" alt="Lock Icon">
                     <input type="password" name="password" placeholder="Password" required autocomplete="off">
                 </div>
                 <button type="submit" class="button">Login</button>
