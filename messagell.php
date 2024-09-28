@@ -88,7 +88,6 @@ $landlord_id = $_SESSION['unique_id'];
                 <li><a href="messagell.php" class="active">Message</a></li>
 </div>
 <div class="main-content">
-       <h1>Chat with Tenants</h1>
          <!-- Dropdown in the top right corner -->
          <div class="top-bar">
             <div class="dropdown" style="display: flex; align-items: center;">
@@ -172,64 +171,115 @@ $landlord_id = $_SESSION['unique_id'];
         </div>
     </div>
 </div>
+
 <div class="main-content2">
-
-    <!-- Display Tenant List -->
-    <div class="tenant-list">
-        <h2>Select a Tenant to Chat</h2>
-        <ul>
-            <?php
-            // Fetch the list of tenants
-            $tenants_query = mysqli_query($conn, "SELECT tenant_id, username, room_num FROM tenant");
-            while ($tenant = mysqli_fetch_assoc($tenants_query)) {
-                echo "<li><a href='?tenant_id={$tenant['tenant_id']}'>Room {$tenant['room_num']} - {$tenant['username']}</a></li>";
-            }
-            ?>
-        </ul>
-    </div>
-
-    <?php
-    // Display chat history for the selected tenant
-    if (isset($_GET['tenant_id'])) {
-        $tenant_id = $_GET['tenant_id'];
-        
-        // Fetch messages between the landlord and the selected tenant
-        $messages_query = mysqli_query($conn, "SELECT * FROM messages WHERE (sender_id = '$landlord_id' AND receiver_id = '$tenant_id') OR (sender_id = '$tenant_id' AND receiver_id = '$landlord_id') ORDER BY created_at ASC");
-
-        echo "<div class='chat-history'>";
-        if (mysqli_num_rows($messages_query) > 0) {
-            while ($message_row = mysqli_fetch_assoc($messages_query)) {
-                $sender_name = $message_row['sender_id'] == $landlord_id ? 'You' : 'Tenant';
-                echo "
-                    <div class='message'>
-                        <p><strong>{$sender_name}:</strong> {$message_row['message']}</p>
-                        <span>{$message_row['created_at']}</span>
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <!-- Tenant List -->
+            <div class="col-md-4 col-xl-3 chat">
+                <div class="card contacts_card">
+                    <div class="card-header">
+                        <div class="input-group">
+                            <input type="text" placeholder="Search..." class="form-control search">
+                            <div class="input-group-append">
+                                <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
+                            </div>
+                        </div>
                     </div>
-                ";
-            }
-        } else {
-            echo "<p>No messages yet with this tenant.</p>";
-        }
-        echo "</div>";
-    }
-    ?>
+                    <div class="card-body contacts_body">
+                        <ul class="contacts">
+                            <?php
+                            // Fetch the list of tenants
+                            $tenants_query = mysqli_query($conn, "SELECT tenant_id, username, room_num FROM tenant");
+                            while ($tenant = mysqli_fetch_assoc($tenants_query)) {
+                                echo "
+                                    <li>
+                                        <div class='d-flex bd-highlight'>
+                                            <div class='img_cont'>
+                                                <img src='user icon.png' class='rounded-circle user_img'>
+                                                <span class='online_icon'></span>
+                                            </div>
+                                            <div class='user_info'>
+                                                <a href='?tenant_id={$tenant['tenant_id']}'><span>{$tenant['username']}</span></a>
+                                                <p>Room {$tenant['room_num']}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ";
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Popup to send a new message -->
-    <?php if (isset($_GET['tenant_id'])): ?>
-        
-    <div id="messagePopup" class="popup">
-        <div class="popup-content">
-            <h2>Send a Message to Tenant</h2>
-            <form action="send_messagell.php" method="POST">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="4" cols="50" placeholder="Write your message here..." required></textarea>
-                <input type="hidden" name="receiver_id" value="<?php echo $tenant_id; ?>">
-                <button type="submit" class="send-btn">Send</button>
-            </form>
+            <!-- Chat Box -->
+            <div class="col-md-8 col-xl-6 chat">
+                <div class="card">
+                    <div class="card-header msg_head">
+                        <div class="d-flex bd-highlight">
+                            <div class="img_cont">
+                                <img src="user icon.png" class="rounded-circle user_img">
+                                <span class="online_icon"></span>
+                            </div>
+                            <div class="user_info">
+                                <?php
+                                if (isset($_GET['tenant_id'])) {
+                                    $tenant_id = $_GET['tenant_id'];
+                                    $tenant_query = mysqli_query($conn, "SELECT username FROM tenant WHERE tenant_id='$tenant_id'");
+                                    $tenant_data = mysqli_fetch_assoc($tenant_query);
+                                    echo "<p>Chat with {$tenant_data['username']}</p>";
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body msg_card_body">
+                        <?php
+                        if (isset($_GET['tenant_id'])) {
+                            // Fetch chat messages
+                            $messages_query = mysqli_query($conn, "SELECT * FROM messages WHERE (sender_id='$landlord_id' AND receiver_id='$tenant_id') OR (sender_id='$tenant_id' AND receiver_id='$landlord_id') ORDER BY created_at ASC");
+
+                            if (mysqli_num_rows($messages_query) > 0) {
+                                while ($message_row = mysqli_fetch_assoc($messages_query)) {
+                                    $is_sender = $message_row['sender_id'] == $landlord_id;
+                                    $message_class = $is_sender ? 'msg_cotainer_send' : 'msg_cotainer';
+                                    $message_time_class = $is_sender ? 'msg_time_send' : 'msg_time';
+                                    echo "
+                                        <div class='d-flex ".($is_sender ? "justify-content-end" : "justify-content-start")." mb-4'>
+                                            <div class='img_cont_msg'>
+                                                <img src='landlord.png' class='rounded-circle user_img_msg'>
+                                            </div>
+                                            <div class='{$message_class}'>
+                                                {$message_row['message']}
+                                                <span class='{$message_time_class}'>{$message_row['created_at']}</span>
+                                            </div>
+                                        </div>
+                                    ";
+                                }
+                            } else {
+                                echo "<p>No messages yet with this tenant.</p>";
+                            }
+                        }
+                        ?>
+                    </div>
+                    <div class="card-footer">
+                        <form action="send_messagell.php" method="POST">
+                            <div class="input-group">
+                                <textarea class="form-control" name="message" placeholder="Write your message here..." required></textarea>
+                                <input type="hidden" name="receiver_id" value="<?php echo $tenant_id; ?>">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">Send</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <?php endif; ?>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>

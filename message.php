@@ -30,7 +30,7 @@ $landlords_query = mysqli_query($conn, "SELECT id, username FROM landlord");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landlord Dashboard - Chat</title>
+    <title>Tenant Dashboard - Chat</title>
     <link rel="stylesheet" href="message.css">
     <  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -111,7 +111,6 @@ $landlords_query = mysqli_query($conn, "SELECT id, username FROM landlord");
 </div>
 
 <div class="main-content">
-<h1>Chat with Landlord</h1>
          <!-- Dropdown in the top right corner -->
          <div class="top-bar">
             <div class="dropdown" style="display: flex; align-items: center;">
@@ -195,69 +194,113 @@ $landlords_query = mysqli_query($conn, "SELECT id, username FROM landlord");
         </div>
     </div>
 </div>
+
 <div class="main-content2">
-
-    <h2>Select a Landlord to Chat</h2>
-    <form action="" method="GET">
-        <select name="landlord_id" onchange="this.form.submit()">
-            <option value="">-- Select a Landlord --</option>
-            <?php while ($landlord = mysqli_fetch_assoc($landlords_query)): ?>
-                <option value="<?php echo $landlord['id']; ?>">
-                    <?php echo $landlord['username']; ?>
-                </option>
-            <?php endwhile; ?>
-        </select>
-    </form>
-
-    <?php
-    if (isset($_GET['landlord_id'])) {
-        $landlord_id = $_GET['landlord_id'];
-
-        // Fetch messages between the tenant and the selected landlord
-        $messages_query = mysqli_query($conn, "
-            SELECT * 
-            FROM messages 
-            WHERE (sender_id = '$user_id' AND receiver_id = '$landlord_id') 
-               OR (sender_id = '$landlord_id' AND receiver_id = '$user_id') 
-            ORDER BY created_at ASC
-        ");
-    ?>
-
-    <div class="chat-history">
-        <?php
-        if (mysqli_num_rows($messages_query) > 0) {
-            while ($message_row = mysqli_fetch_assoc($messages_query)) {
-                $sender_name = $message_row['sender_id'] == $user_id ? 'You' : 'Landlord';
-                echo "
-                    <div class='message'>
-                        <p><strong>{$sender_name}:</strong> {$message_row['message']}</p>
-                        <span>{$message_row['created_at']}</span>
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <!-- Tenant List -->
+            <div class="col-md-4 col-xl-3 chat">
+                <div class="card contacts_card">
+                    <div class="card-header">
+                        <div class="input-group">
+                            <input type="text" placeholder="Search..." class="form-control search">
+                            <div class="input-group-append">
+                                <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
+                            </div>
+                        </div>
                     </div>
-                ";
-            }
-        } else {
-            echo "<p>No messages yet.</p>";
-        }
-        ?>
-    </div>
+                    <div class="card-body contacts_body">
+                        <ul class="contacts">
+                            <form action="" method="GET">
+                                <select name="landlord_id" onchange="this.form.submit()">
+                                    <option value="">-- Select a Landlord --</option>
+                                    <?php while ($landlord = mysqli_fetch_assoc($landlords_query)): ?>
+                                        <option value="<?php echo $landlord['id']; ?>" <?php echo (isset($_GET['landlord_id']) && $_GET['landlord_id'] == $landlord['id']) ? 'selected' : ''; ?>>
+                                            <?php echo $landlord['username']; ?>
+                                        </option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </form>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Popup to send a new message -->
-    <button class="create-btn" onclick="showPopup()">Create New Message</button>
-    <div id="messagePopup" class="popup">
-        <div class="popup-content">
-            <span class="close-btn" onclick="closePopup()">&times;</span>
-            <h2>Create New Message</h2>
-            <form action="send_message.php" method="POST">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="4" cols="50" placeholder="Write your message here..." required></textarea><br><br>
-                <input type="hidden" name="receiver_id" value="<?php echo $landlord_id; ?>">
-                <button type="submit" class="send-btn">Send</button>
-            </form>
+            <!-- Chat Box -->
+            <div class="col-md-8 col-xl-6 chat">
+                <div class="card">
+                    <div class="card-header msg_head">
+                        <div class="d-flex bd-highlight">
+                            <div class="img_cont">
+                                <img src="landlord.png" class="rounded-circle user_img">
+                                <span class="online_icon"></span>
+                            </div>
+                            <div class="user_info">
+                                <?php
+                                if (isset($_GET['landlord_id'])) {
+                                    $landlord_id = $_GET['landlord_id'];
+                                    $landlord_query = mysqli_query($conn, "SELECT username FROM landlord WHERE id='$landlord_id'");
+                                    $landlord_data = mysqli_fetch_assoc($landlord_query);
+                                    echo "<p>Chat with {$landlord_data['username']}</p>";
+                                } else {
+                                    echo "<p>Select a landlord to chat</p>";
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body msg_card_body">
+                        <?php
+                        if (isset($_GET['landlord_id'])) {
+                            // Fetch messages between the tenant and the selected landlord
+                            $messages_query = mysqli_query($conn, "
+                                SELECT * 
+                                FROM messages 
+                                WHERE (sender_id = '$user_id' AND receiver_id = '$landlord_id') 
+                                   OR (sender_id = '$landlord_id' AND receiver_id = '$user_id') 
+                                ORDER BY created_at ASC
+                            ");
+
+                            if (mysqli_num_rows($messages_query) > 0) {
+                                while ($message_row = mysqli_fetch_assoc($messages_query)) {
+                                    $is_sender = $message_row['sender_id'] == $user_id;
+                                    $message_class = $is_sender ? 'msg_cotainer_send' : 'msg_cotainer';
+                                    $message_time_class = $is_sender ? 'msg_time_send' : 'msg_time';
+                                    echo "
+                                        <div class='d-flex ".($is_sender ? "justify-content-end" : "justify-content-start")." mb-4'>
+                                            <div class='img_cont_msg'>
+                                                <img src='user icon.png' class='rounded-circle user_img_msg'>
+                                            </div>
+                                            <div class='{$message_class}'>
+                                                {$message_row['message']}
+                                                <span class='{$message_time_class}'>{$message_row['created_at']}</span>
+                                            </div>
+                                        </div>
+                                    ";
+                                }
+                            } else {
+                                echo "<p>No messages yet.</p>";
+                            }
+                        }
+                        ?>
+                    </div>
+                    <div class="card-footer">
+                        <form action="send_message.php" method="POST">
+                            <div class="input-group">
+                                <textarea class="form-control" name="message" placeholder="Write your message here..." required></textarea>
+                                <input type="hidden" name="receiver_id" value="<?php echo $landlord_id; ?>">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">Send</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <?php } ?>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     function showPopup() {
