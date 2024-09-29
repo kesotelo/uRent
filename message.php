@@ -203,26 +203,30 @@ $landlords_query = mysqli_query($conn, "SELECT id, username FROM landlord");
                 <div class="card contacts_card">
                     <div class="card-header">
                         <div class="input-group">
-                            <input type="text" placeholder="Search..." class="form-control search">
+                            <input type="text" placeholder="🔎Search..." class="form-control search">
                             <div class="input-group-append">
                                 <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
                             </div>
                         </div>
                     </div>
                     <div class="card-body contacts_body">
-                        <ul class="contacts">
-                            <form action="" method="GET">
-                                <select name="landlord_id" onchange="this.form.submit()">
-                                    <option value="">-- Select a Landlord --</option>
-                                    <?php while ($landlord = mysqli_fetch_assoc($landlords_query)): ?>
-                                        <option value="<?php echo $landlord['id']; ?>" <?php echo (isset($_GET['landlord_id']) && $_GET['landlord_id'] == $landlord['id']) ? 'selected' : ''; ?>>
-                                            <?php echo $landlord['username']; ?>
-                                        </option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </form>
-                        </ul>
-                    </div>
+    <ul class="contacts">
+        <?php while ($landlord = mysqli_fetch_assoc($landlords_query)): ?>
+            <li>
+                <div class='d-flex bd-highlight'>
+                            <div class='img_cont'>
+                                    <img src='landlord.png' class='rounded-circle user_img'>
+                                    <span class='online_icon'></span>
+                        </div>
+                <a href="?landlord_id=<?php echo $landlord['id']; ?>" 
+                   class="<?php echo (isset($_GET['landlord_id']) && $_GET['landlord_id'] == $landlord['id']) ? 'selected' : ''; ?>">
+                    <?php echo $landlord['username']; ?>
+                </a>
+            </li>
+        <?php endwhile; ?>
+    </ul>
+</div>
+
                 </div>
             </div>
 
@@ -241,7 +245,7 @@ $landlords_query = mysqli_query($conn, "SELECT id, username FROM landlord");
                                     $landlord_id = $_GET['landlord_id'];
                                     $landlord_query = mysqli_query($conn, "SELECT username FROM landlord WHERE id='$landlord_id'");
                                     $landlord_data = mysqli_fetch_assoc($landlord_query);
-                                    echo "<p>Chat with {$landlord_data['username']}</p>";
+                                    echo "<p class='chat_info'>Chat with {$landlord_data['username']}</p>";
                                 } else {
                                     echo "<p>Select a landlord to chat</p>";
                                 }
@@ -302,15 +306,7 @@ $landlords_query = mysqli_query($conn, "SELECT id, username FROM landlord");
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    function showPopup() {
-        document.getElementById('messagePopup').style.display = 'flex';
-    }
 
-    function closePopup() {
-        document.getElementById('messagePopup').style.display = 'none';
-    }
-</script>
 
 </body>
 </html>

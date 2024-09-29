@@ -180,7 +180,7 @@ $landlord_id = $_SESSION['unique_id'];
                 <div class="card contacts_card">
                     <div class="card-header">
                         <div class="input-group">
-                            <input type="text" placeholder="Search..." class="form-control search">
+                            <input type="text" placeholder="🔎Search..." class="form-control search">
                             <div class="input-group-append">
                                 <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
                             </div>
@@ -228,7 +228,7 @@ $landlord_id = $_SESSION['unique_id'];
                                     $tenant_id = $_GET['tenant_id'];
                                     $tenant_query = mysqli_query($conn, "SELECT username FROM tenant WHERE tenant_id='$tenant_id'");
                                     $tenant_data = mysqli_fetch_assoc($tenant_query);
-                                    echo "<p>Chat with {$tenant_data['username']}</p>";
+                                    echo "<p class='chat_info'>Chat with {$tenant_data['username']}</p>";
                                 }
                                 ?>
                             </div>
@@ -282,16 +282,7 @@ $landlord_id = $_SESSION['unique_id'];
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    // Show and hide popup logic (optional)
-    function showPopup() {
-        document.getElementById('messagePopup').style.display = 'flex';
-    }
 
-    function closePopup() {
-        document.getElementById('messagePopup').style.display = 'none';
-    }
-</script>
 
 </body>
 </html>

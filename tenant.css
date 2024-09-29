@@ -99,6 +99,13 @@ body::before {
     margin-left: 280px; /* Push content right to make space for the sidebar */
     padding: 20px; /* Ensure content has padding */
 }
+.row{ /*search*/
+    position: fixed; 
+    top: 130px; 
+    left: 350px; 
+    overflow-y: auto;
+}
+
 .main-content h2 {
     color: #FFFFFF;
 }   
@@ -125,7 +132,7 @@ body::before {
 }
 
 .add-tenants-btn {
-    padding: 10px 20px;
+    padding: 8px 10px;
     background: linear-gradient(135deg, #2A2F44, #5B4C69);
     color: white;
     border: none;
@@ -375,5 +382,6 @@ button{
         display: none;
     }
 }
+
 
 

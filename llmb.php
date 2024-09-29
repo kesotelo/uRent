@@ -231,8 +231,14 @@ session_start();
         <!-- Rows will be dynamically inserted here -->
     </tbody>
 </table>
+<div class="row">
+    <div class="col">
+        <input type="text" id="report-section" class="form-control" placeholder="🔎 Search . . .">
+    </div>
+</div>
         </div>
     </div>
+    <div class="bills-section_length" id="bills_section_length"><label>Show <select name="bills_section_length" aria-controls="bills-section" class=""><option value="10">10</option><option value="20">20</option><option value="30">30</option><option value="40">40</option></select> entries</label></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lldb.js"></script>
 </body>
