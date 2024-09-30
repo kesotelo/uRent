@@ -1,16 +1,36 @@
 <?php
-include_once 'connect.php';
 session_start();
+include_once "connect.php";
+
+// Ensure the user is logged in
+if (!isset($_SESSION['unique_id'])) {
+    echo "<script>alert('Please log in first.'); window.location='tlogin.php';</script>";
+    exit();
+}
+
+$user_id = $_SESSION['unique_id']; // Logged in tenant's unique ID
+
+// Fetch the tenant's information based on the session ID
+$tenant_query = mysqli_query($conn, "SELECT room_num, username FROM tenant WHERE tenant_id = '$user_id'");
+if (mysqli_num_rows($tenant_query) > 0) {
+    $tenant = mysqli_fetch_assoc($tenant_query);
+    $roomNumber = $tenant['room_num'];
+    $username = $tenant['username'];
+} else {
+    echo "<script>alert('Tenant information not found.'); window.location='tlogin.php';</script>";
+    exit();
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landlord Dashboard</title>
-    <link rel="stylesheet" href="twbb.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Tenant Dashboard - Chat</title>
+    <link rel="stylesheet" href="message.css">
+    <  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
 /* Dropdown Position and Style */
@@ -93,16 +113,8 @@ session_start();
         </li>
     </ul>
 </div>
-<?php
-				$query = "SELECT * FROM elec where tenant_id ='" . $_SESSION['unique_id']  ."'";
-				$result = mysqli_query($conn, $query);
-				if(mysqli_num_rows($result) > 0)
-				{
-					while($row = mysqli_fetch_array($result))
-					{
-				?>
+
 <div class="main-content">
-    <h1>Electricity Bill</h1>
          <!-- Dropdown in the top right corner -->
          <div class="top-bar">
             <div class="dropdown" style="display: flex; align-items: center;">
@@ -186,23 +198,29 @@ session_start();
         </div>
     </div>
 </div>
-<div class="main-content2">
-    <div class="bill-section">
-        <div class="bill-card previous-bill">
-            <h2>Previous Bill</h2>
-            <p>₱<?php echo $row["p_bill"]; ?></p> <!-- Fetched previous bill -->
-            <p class="payment-date">Date of Payment: </p> <!-- Fetched payment date -->
-            <button id="printButton1" class="print-btn">Print</button>
-        </div>
 
-        <div class="bill-card current-bill">
-            <h2>Current Bill</h2> 
-            <p>₱<?php echo $row["n_bill"]; ?></p> <!-- Fetched current bill -->
-            <p>Detailed Breakdown</p>
-            <button id="viewButton" class="view-btn">View</button>
-        </div>
+
+<div class="main-content2">
+    <h2>Submit a Request to Your Landlord</h2>
+    <form action="submit_request.php" method="post">
+    <div class="form-group">
+        <label for="roomNumber">Room Number:</label>
+        <input type="text" id="roomNumber" name="roomNumber" class="form-control" value="<?php echo $roomNumber; ?>" readonly>
     </div>
+    <div class="form-group">
+        <label for="tenantName">Tenant Name:</label>
+        <input type="text" id="tenantName" name="tenantName" class="form-control" value="<?php echo $username; ?>" readonly>
+    </div>
+    <div class="form-group">
+        <label for="request">Request:</label>
+        <textarea id="request" name="request" class="form-control" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Request</button>
+</form>
+
 </div>
+
+
 
 <script>// Dropdown Toggle Logic
 document.addEventListener('DOMContentLoaded', function () {
@@ -237,9 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="twb.js"></script>
-<?php }
-}
-?>
+
+
 </body>
 </html>

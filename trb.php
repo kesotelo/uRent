@@ -68,24 +68,29 @@ session_start();
     </style>
 </head>
 <body>
+
 <div class="sidebar">
     <div class="URent">
-            <img src="urentlogo.png" alt="logo Image">
-            <p class="logo-text">URent</p>
+        <img src="urentlogo.png" alt="logo Image">
+        <p class="logo-text">URent</p>
     </div>
     <ul>
         <li><a href="tdb.php">Dashboard</a></li>
-        
-        <!-- Dropdown Menu for Bills -->
         <li class="dropdownSide">
-        <a href="#" class="dropdown-toggleSide" onclick="toggleDropdown()">Bills <span class="arrowSide"></span></a>
-        <ul class="dropdown-menuSide">
+            <a href="#" class="dropdown-toggleSide">Bills <span class="arrowSide"></span></a>
+            <ul class="dropdown-menuSide">
                 <li><a href="twb.php">Water Bill</a></li>
                 <li><a href="teb.php">Electricity Bill</a></li>
-                <li><a href="#" class="active">Rent Bill</a></li>
+                <li><a href="trb.php">Rent Bill</a></li>
             </ul>
         </li>
-        <li><a href="message.php">Message</a></li>
+        <li class="dropdownSide">
+            <a href="#" class="dropdown-toggleSide">Contact Landlord <span class="arrowSide"></span></a>
+            <ul class="dropdown-menuSide">
+                <li><a href="message.php">Message</a></li>
+                <li><a href="trq.php">Tenant Request</a></li>
+            </ul>
+        </li>
     </ul>
 </div>
 <?php
@@ -203,6 +208,38 @@ session_start();
 }
 }
 ?>
+<script>// Dropdown Toggle Logic
+document.addEventListener('DOMContentLoaded', function () {
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdown = document.querySelector('.dropdown');
+
+    dropdownToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        dropdown.classList.toggle('open');
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdowns = document.querySelectorAll('.dropdownSide');
+
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggleSide');
+        
+        toggle.addEventListener('click', function(event) {
+            event.preventDefault();
+            dropdown.classList.toggle('open');
+        });
+    });
+
+    // Optional: Close dropdown if clicking outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.dropdownSide')) {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('open');
+            });
+        }
+    });
+});
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="twb.js"></script>
 </body>

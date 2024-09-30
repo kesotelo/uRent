@@ -242,14 +242,22 @@ session_start();
 
             <!-- Tenant Requests Section -->
             <div class="tenant-requests">
-                <h3>Tenant Request</h3>
-                <ul>
-                    <li>ROOM 1 - <span class="status"><?php echo '___'; // Placeholder ?></span></li>
-                    <li>ROOM 2 - <span class="status"><?php echo '___'; // Placeholder ?></span></li>
-                    <li>ROOM 3 - <span class="status"><?php echo '___'; // Placeholder ?></span></li>
-                    <li>ROOM 4 - <span class="status"><?php echo '___'; // Placeholder ?></span></li>
-                </ul>
-            </div>
+            <h3>Tenant Requests</h3>
+            <?php
+            // Fetch tenant requests from the database
+            $query = "SELECT room_number, request, status FROM tenant_requests";
+            $result = $conn->query($query);
+
+            if ($result->num_rows > 0) {
+                echo '<ul>';
+                while ($row = $result->fetch_assoc()) {
+                    echo '<li>ROOM ' . $row['room_number'] . ' - ' . $row['request'] . ' <span class="status">' . $row['status'] . '</span></li>';
+                }
+                echo '</ul>';
+            } else {
+                echo "No tenant requests at the moment.";
+            }
+            ?>
         </div>
     </div>
 

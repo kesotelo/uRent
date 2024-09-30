@@ -106,7 +106,13 @@ $landlords_query = mysqli_query($conn, "SELECT id, username FROM landlord");
                 <li><a href="trb.php">Rent Bill</a></li>
             </ul>
         </li>
-        <li><a href="message.php" class="active">Message</a></li>
+        <li class="dropdownSide">
+            <a href="#" class="dropdown-toggleSide">Contact Landlord <span class="arrowSide"></span></a>
+            <ul class="dropdown-menuSide">
+                <li><a href="message.php">Message</a></li>
+                <li><a href="trq.php">Tenant Request</a></li>
+            </ul>
+        </li>
     </ul>
 </div>
 
@@ -305,6 +311,38 @@ $landlords_query = mysqli_query($conn, "SELECT id, username FROM landlord");
     </div>
 </div>
 
+<script>// Dropdown Toggle Logic
+document.addEventListener('DOMContentLoaded', function () {
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdown = document.querySelector('.dropdown');
+
+    dropdownToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        dropdown.classList.toggle('open');
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdowns = document.querySelectorAll('.dropdownSide');
+
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggleSide');
+        
+        toggle.addEventListener('click', function(event) {
+            event.preventDefault();
+            dropdown.classList.toggle('open');
+        });
+    });
+
+    // Optional: Close dropdown if clicking outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.dropdownSide')) {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('open');
+            });
+        }
+    });
+});
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 

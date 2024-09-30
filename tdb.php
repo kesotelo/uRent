@@ -70,23 +70,29 @@ session_start();
 
     </style>
 <body>
+
 <div class="sidebar">
-        <div class="URent">
-            <img src="urentlogo.png" alt="logo Image">
-            <p class="logo-text">URent</p>
+    <div class="URent">
+        <img src="urentlogo.png" alt="logo Image">
+        <p class="logo-text">URent</p>
     </div>
     <ul>
-        <li><a href="#" class="active">Dashboard</a></li>
-        <!-- Dropdown Menu for Bills -->
+        <li><a href="tdb.php">Dashboard</a></li>
         <li class="dropdownSide">
             <a href="#" class="dropdown-toggleSide">Bills <span class="arrowSide"></span></a>
             <ul class="dropdown-menuSide">
                 <li><a href="twb.php">Water Bill</a></li>
                 <li><a href="teb.php">Electricity Bill</a></li>
                 <li><a href="trb.php">Rent Bill</a></li>
-            </ul>   
+            </ul>
         </li>
-        <li><a href="message.php">Message</a></li>
+        <li class="dropdownSide">
+            <a href="#" class="dropdown-toggleSide">Contact Landlord <span class="arrowSide"></span></a>
+            <ul class="dropdown-menuSide">
+                <li><a href="message.php">Message</a></li>
+                <li><a href="trq.php">Tenant Request</a></li>
+            </ul>
+        </li>
     </ul>
 </div>
 
