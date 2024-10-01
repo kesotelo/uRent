@@ -246,7 +246,7 @@ if (!$result) {
         <div class="popup-content">
             <span class="close-btn" onclick="closePopup('add-tenant')">&times;</span>
             <h3>Add New Tenant</h3>
-            <form id="add-tenant-form">
+            <form action = 'addtenant.php' method = 'post'>
                 <label for="tenant-name">Tenant Name:<span class="text-danger">*</span></label>
                 <input type="text" id="tenant-name" name="tenant-name" required autocomplete="off">
                 <label for="Email">Email:<span class="text-danger">*</span></label>
