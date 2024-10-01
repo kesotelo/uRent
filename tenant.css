@@ -99,7 +99,7 @@ body::before {
     margin-left: 280px; /* Push content right to make space for the sidebar */
     padding: 20px; /* Ensure content has padding */
 }
-.row{ /*search*/
+.Searchrow{ /*search*/
     position: fixed; 
     top: 130px; 
     left: 350px; 

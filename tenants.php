@@ -223,7 +223,7 @@ if (!$result) {
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="Searchrow">
     <div class="col">
         <input type="text" id="tenant-room" class="form-control" placeholder="🔎 Search . . .">
     </div>
