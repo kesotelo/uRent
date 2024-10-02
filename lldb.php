@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once 'connect.php';
 
 $pendingRequestQuery = "SELECT COUNT(*) as pending_count FROM tenant_requests WHERE status = 'Pending'";
@@ -9,6 +10,20 @@ if ($pendingResult->num_rows > 0) {
     $pendingRow = $pendingResult->fetch_assoc();
     $pendingRequestCount = $pendingRow['pending_count'];
 }
+
+// Add this logic in your lldb.php to handle "Done" button clicks
+if (isset($_POST['done_request'])) {
+    $request_id = $_POST['request_id'];  // Get the request ID from the form
+
+    // Update the tenant request status to 'Done' in the database
+    $update_status_query = "UPDATE tenant_requests SET status = 'Done' WHERE id = '$request_id'";
+    if (mysqli_query($conn, $update_status_query)) {
+        echo "<script>alert('Request marked as done.'); window.location='lldb.php';</script>";
+    } else {
+        echo "<script>alert('Error updating request status.');</script>";
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,6 +104,22 @@ if ($pendingResult->num_rows > 0) {
             padding: 5px;
             border-radius: 50%;
             font-size: 12px;
+        }
+
+        .status-dropdown {
+            display: inline-block;
+            position: relative;
+        }
+
+        .dropdown-toggle::after {
+            display: none;
+        }
+
+        .badge {
+            background-color: red;
+            color: white;
+            padding: 5px;
+            border-radius: 50%;
         }
     </style>
 </head>
@@ -276,24 +307,51 @@ if ($pendingResult->num_rows > 0) {
                     <?php } ?>
                 </div>
             </h3>
-        <?php
-            $query = "SELECT room_number, request, status FROM tenant_requests";
-            $result = $conn->query($query);
 
-            if ($result->num_rows > 0) {
-                echo '<ul>';
-                while ($row = $result->fetch_assoc()) {
-                    echo '<li>ROOM ' . $row['room_number'] . ' - ' . $row['request'] . ' <span class="status">' . $row['status'] . '</span></li>';
+            <?php
+            // Fetch all tenant requests
+            $request_query = mysqli_query($conn, "SELECT * FROM tenant_requests WHERE status = 'pending'");
+
+
+            if (mysqli_num_rows($request_query) > 0) {
+                while ($row = mysqli_fetch_assoc($request_query)) {
+                    echo "<div class='request-container'>";
+                    echo "<p><strong>Room:</strong> " . $row['room_number'] . "</p>";
+                    echo "<p><strong>Tenant:</strong> " . $row['tenant_name'] . "</p>";
+                    echo "<p><strong>Request:</strong> " . $row['request'] . "</p>";
+                    echo "<p><strong>Date:</strong> " . $row['request_date'] . "</p>";
+                    echo "<form method='POST' action='mark_done.php'>";
+                    echo "<input type='hidden' name='request_id' value='" . $row['id'] . "'>";
+                    echo "<button type='submit' class='btn btn-success'>Mark as Done</button>";
+                    echo "</form>";
+                    echo "</div><hr>";
                 }
-                echo '</ul>';
             } else {
-                echo "No tenant requests at the moment.";
+                echo "<p>No pending requests at the moment.</p>";
             }
             ?>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function updateStatus(requestId, newStatus) {
+            // Send an AJAX request to update the status
+            fetch('update_status.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'id=' + requestId + '&status=' + newStatus
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Optionally handle the response or refresh the page
+                location.reload(); // Reload the page to reflect the updated status
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
     <script src="scripts.js"></script>
 </body>
 </html>

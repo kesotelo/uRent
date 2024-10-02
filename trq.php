@@ -20,8 +20,10 @@ if (mysqli_num_rows($tenant_query) > 0) {
     echo "<script>alert('Tenant information not found.'); window.location='tlogin.php';</script>";
     exit();
 }
-?>
 
+// Fetch the tenant's request history (requests marked as 'done')
+$history_query = mysqli_query($conn, "SELECT * FROM tenant_requests WHERE tenant_id = '$user_id' AND status = 'done' ORDER BY request_date DESC");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -217,9 +219,22 @@ if (mysqli_num_rows($tenant_query) > 0) {
     </div>
     <button type="submit" class="btn btn-primary">Submit Request</button>
 </form>
-
-</div>
-
+<h2>Your Request History</h2>
+    <?php
+    if (mysqli_num_rows($history_query) > 0) {
+        while ($row = mysqli_fetch_assoc($history_query)) {
+            echo "<div class='history-container'>";
+            echo "<p><strong>Room:</strong> " . $row['room_number'] . "</p>";
+            echo "<p><strong>Request:</strong> " . $row['request'] . "</p>";
+            echo "<p><strong>Status:</strong> " . $row['status'] . "</p>";
+            echo "<p><strong>Date:</strong> " . $row['request_date'] . "</p>";
+            echo "</div><hr>";
+        }
+    } else {
+        echo "<p>No completed requests yet.</p>";
+    }
+    ?>
+    </div>
 
 
 <script>// Dropdown Toggle Logic
