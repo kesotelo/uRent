@@ -1,8 +1,15 @@
 <?php
 include_once 'connect.php';
-session_start();
-?>
 
+$pendingRequestQuery = "SELECT COUNT(*) as pending_count FROM tenant_requests WHERE status = 'Pending'";
+$pendingResult = $conn->query($pendingRequestQuery);
+$pendingRequestCount = 0;
+
+if ($pendingResult->num_rows > 0) {
+    $pendingRow = $pendingResult->fetch_assoc();
+    $pendingRequestCount = $pendingRow['pending_count'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +17,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landlord Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -63,6 +71,24 @@ session_start();
         .btn-cancel{
             background: linear-gradient(135deg, #2B3544, #4a5f86);
             color: white;
+        }
+        .icon-container {
+            position: relative;
+            display: inline-block;
+        }
+        .fa-envelope {
+            font-size: 24px;
+            color: white; 
+        }
+        .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            padding: 5px;
+            border-radius: 50%;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -204,12 +230,12 @@ session_start();
         <div class="top-cards">
             <div class="card">
                 <h3>Rent Received</h3>
-                <p>₱<?php echo '___'; // Placeholder ?></p>
+                <p>₱<?php echo '___';  ?></p>
                 <p><?php echo '__'; ?> Unpaid</p>
             </div>
             <div class="card">
                 <h3>Overdue Rent</h3>
-                <p>₱<?php echo '___'; // Placeholder ?></p>
+                <p>₱<?php echo '___';  ?></p>
                 <p><?php echo '__'; ?> Overdue</p>
             </div>
             <div class="card">
@@ -240,11 +266,17 @@ session_start();
                 </div>
             </div>
 
-            <!-- Tenant Requests Section -->
             <div class="tenant-requests">
-            <h3>Tenant Requests</h3>
-            <?php
-            // Fetch tenant requests from the database
+            <h3 style="display: flex; align-items: center;">
+                Tenant Requests
+                <div class="icon-container" style="margin-left: 10px;">
+                    <i class="fas fa-envelope"></i>
+                    <?php if ($pendingRequestCount > 0) { ?>
+                        <span class="badge"><?php echo $pendingRequestCount; ?></span>
+                    <?php } ?>
+                </div>
+            </h3>
+        <?php
             $query = "SELECT room_number, request, status FROM tenant_requests";
             $result = $conn->query($query);
 
