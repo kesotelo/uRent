@@ -142,7 +142,7 @@ body::before {
     left: 328px; 
     overflow-y: auto;
 }
-.row{ /*search*/
+.row1{ /*search*/
     position: fixed; 
     top: 130px; 
     left: 350px; 
@@ -220,8 +220,8 @@ body::before {
 .menu-item {
     margin-bottom: 15px;
 }
-
-.menu-item a {
+/*sidebar icons*/
+.menu-item a { 
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -237,9 +237,4 @@ body::before {
 
 .menu-item a.active {
     font-weight: bold;
-}
-.logo-text {
-    font-size: 16px;
-    font-weight: bold;
-    margin: 0;
 }

@@ -97,20 +97,49 @@ $landlords_query = mysqli_query($conn, "SELECT id, username FROM landlord");
         <p class="logo-text">URent</p>
     </div>
     <ul>
-        <li><a href="tdb.php">Dashboard</a></li>
+    <ul>
+        <li>
+            <a href="tdb.php">
+                <img src="dashboard.png" alt="Dashboard Icon" class="menu-item"> Dashboard
+            </a>
+        </li>
         <li class="dropdownSide">
-            <a href="#" class="dropdown-toggleSide">Bills <span class="arrowSide"></span></a>
+            <a href="#" class="dropdown-toggleSide">
+                <img src="bill.png" alt="Bills Icon" class="menu-item"> Bills <span class="arrowSide"></span>
+            </a>
             <ul class="dropdown-menuSide">
-                <li><a href="twb.php">Water Bill</a></li>
-                <li><a href="teb.php">Electricity Bill</a></li>
-                <li><a href="trb.php">Rent Bill</a></li>
+                <li>
+                    <a href="twb.php">
+                        <img src="water.png" alt="Water Bill Icon" class="submenu-item"> Water Bill
+                    </a>
+                </li>
+                <li>
+                    <a href="teb.php">
+                        <img src="electricity.png" alt="Electricity Bill Icon" class="submenu-item"> Electricity Bill
+                    </a>
+                </li>
+                <li>
+                    <a href="trb.php">
+                        <img src="rent.png" alt="Rent Bill Icon" class="submenu-item"> Rent Bill
+                    </a>
+                </li>
             </ul>
         </li>
         <li class="dropdownSide">
-            <a href="#" class="dropdown-toggleSide">Contact Landlord <span class="arrowSide"></span></a>
+            <a href="#" class="dropdown-toggleSide">
+                <img src="contact.png" alt="Contact Landlord Icon" class="menu-item"> Contact Landlord <span class="arrowSide"></span>
+            </a>
             <ul class="dropdown-menuSide">
-                <li><a href="message.php">Message</a></li>
-                <li><a href="trq.php">Tenant Request</a></li>
+                <li>
+                    <a href="message.php">
+                        <img src="messages.png" alt="Message Icon" class="submenu-item"> Message
+                    </a>
+                </li>
+                <li>
+                    <a href="trq.php">
+                        <img src="request.png" alt="Tenant Request Icon" class="submenu-item"> Tenant Request
+                    </a>
+                </li>
             </ul>
         </li>
     </ul>

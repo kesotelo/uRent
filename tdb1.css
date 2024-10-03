@@ -253,3 +253,24 @@ body::before {
     align-items: center; /* Vertically center content */
     padding: 0 20px; /* Padding for spacing */
 }
+.menu-item .submenu-item {
+    margin-bottom: 15px;
+}
+
+.menu-item a .submenu-item {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.menu-item img .submenu-item {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.menu-item a.active {
+    font-weight: bold;
+}

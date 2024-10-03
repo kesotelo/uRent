@@ -258,7 +258,7 @@ session_start();
         <!-- Rows will be dynamically inserted here -->
     </tbody>
 </table>
-<div class="row">
+<div class="row1">
     <div class="col">
         <input type="text" id="report-section" class="form-control" placeholder="🔎 Search . . .">
     </div>
