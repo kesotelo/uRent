@@ -31,7 +31,7 @@ $history_query = mysqli_query($conn, "SELECT * FROM tenant_requests WHERE tenant
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tenant Dashboard - Chat</title>
-    <link rel="stylesheet" href="message.css">
+    <link rel="stylesheet" href="request.css">
     <  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -203,42 +203,62 @@ $history_query = mysqli_query($conn, "SELECT * FROM tenant_requests WHERE tenant
 
 
 <div class="main-content2">
-    <h2>Submit a Request to Your Landlord</h2>
+    <!-- Flex container for the header and history toggle -->
+    <div class="main-header">
+        <h3>Submit a Request to Your Landlord</h3>
+
+        <!-- History Toggle Section -->
+        <div class="history-toggle">
+            <img src="history.png" alt="History Icon" class="history-icon">
+            <span>Request History</span>
+        </div>
+    </div>
+
     <form action="submit_request.php" method="post">
-    <div class="form-group">
-        <label for="roomNumber">Room Number:</label>
-        <input type="text" id="roomNumber" name="roomNumber" class="form-control" value="<?php echo $roomNumber; ?>" readonly>
-    </div>
-    <div class="form-group">
-        <label for="tenantName">Tenant Name:</label>
-        <input type="text" id="tenantName" name="tenantName" class="form-control" value="<?php echo $username; ?>" readonly>
-    </div>
-    <div class="form-group">
-        <label for="request">Request:</label>
-        <textarea id="request" name="request" class="form-control" rows="4" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit Request</button>
-</form>
-<h2>Your Request History</h2>
-    <?php
-    if (mysqli_num_rows($history_query) > 0) {
-        while ($row = mysqli_fetch_assoc($history_query)) {
-            echo "<div class='history-container'>";
-            echo "<p><strong>Room:</strong> " . $row['room_number'] . "</p>";
-            echo "<p><strong>Request:</strong> " . $row['request'] . "</p>";
-            echo "<p><strong>Status:</strong> " . $row['status'] . "</p>";
-            echo "<p><strong>Date:</strong> " . $row['request_date'] . "</p>";
-            echo "</div><hr>";
+        <div class="form-group">
+            <label for="roomNumber">Room Number:</label>
+            <input type="text" id="roomNumber" name="roomNumber" class="form-control" value="<?php echo $roomNumber; ?>" readonly>
+        </div>
+        <div class="form-group">
+            <label for="tenantName">Tenant Name:</label>
+            <input type="text" id="tenantName" name="tenantName" class="form-control" value="<?php echo $username; ?>" readonly>
+        </div>
+        <div class="form-group">
+            <label for="request">Request:</label>
+            <textarea id="request" name="request" class="form-control" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Request</button>
+    </form>
+
+    <!-- Request History Section (Hidden by default) -->
+    <div id="history-section" class="history-container">
+        <?php
+        if (mysqli_num_rows($history_query) > 0) {
+            while ($row = mysqli_fetch_assoc($history_query)) {
+                echo "<div class='history-entry'>";
+                echo "<p><strong>Room:</strong> " . $row['room_number'] . "</p>";
+                echo "<p><strong>Request:</strong> " . $row['request'] . "</p>";
+                echo "<p><strong>Status:</strong> " . $row['status'] . "</p>";
+                echo "<p><strong>Date:</strong> " . $row['request_date'] . "</p>";
+                echo "</div><hr>";
+            }
+        } else {
+            echo "<p>No completed requests yet.</p>";
         }
-    } else {
-        echo "<p>No completed requests yet.</p>";
-    }
-    ?>
+        ?>
     </div>
-
-
-<script>// Dropdown Toggle Logic
+</div>
+<!-- Dropdown Toggle Logic -->
+<script>
 document.addEventListener('DOMContentLoaded', function () {
+    const historyToggle = document.querySelector('.history-toggle');
+    const historySection = document.getElementById('history-section');
+
+    historyToggle.addEventListener('click', function () {
+        // Toggle the visibility of the request history
+        historySection.style.display = historySection.style.display === 'none' || historySection.style.display === '' ? 'block' : 'none';
+    });
+
     const dropdownToggle = document.querySelector('.dropdown-toggle');
     const dropdown = document.querySelector('.dropdown');
 
@@ -247,6 +267,7 @@ document.addEventListener('DOMContentLoaded', function () {
         dropdown.classList.toggle('open');
     });
 });
+
 document.addEventListener('DOMContentLoaded', function() {
     const dropdowns = document.querySelectorAll('.dropdownSide');
 
@@ -270,6 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 
 
 </body>
