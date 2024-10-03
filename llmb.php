@@ -74,19 +74,46 @@ session_start();
                 <p class="logo-text">URent</p>
             </div>
             <ul>
-                <li><a href="lldb.php">Dashboard</a></li>
-                <li class="dropdownSide">
-            <a class="dropdown-toggleSide">Report <span class="arrowSide">&#9662;</span></a>
-            <ul class="dropdown-menuSide">
-                <li><a class="dropdown-itemSide" data-action="monthly_report">Monthly Report</a></li>
-                <li><a class="dropdown-itemSide" data-action="transaction_report">Transaction Report</a></li>
-            </ul>
+            <li class="menu-item">
+            <a href="lldb.php" >
+                <img src="dashboard.png" alt="Dashboard Icon" class="menu-icon">
+                Dashboard
+            </a>
         </li>
-                <li><a href="tenants.php">Tenants</a></li>
-                <li><a href="messagell.php">Messages</a></li>  
-            </ul>
-        </div>
-    </div>
+        <li class="dropdownSide">
+                <a class="dropdown-toggleSide">
+                    <img src="report.png" alt="Report Icon" class="menu-icon">
+                    Report <span class="arrowSide">&#9662;</span>
+                </a>
+                <ul class="dropdown-menuSide">
+                    <li>
+                        <a class="dropdown-itemSide" data-action="monthly_report">
+                            <img src="monthly.png" alt="Monthly Report Icon" class="menu-icon">
+                            Monthly Report
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-itemSide" data-action="transaction_report">
+                            <img src="transaction.png" alt="Transaction Report Icon" class="menu-icon">
+                            Transaction Report
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        <li class="menu-item">
+            <a href="tenants.php">
+                <img src="tenant.png" alt="Tenants Icon" class="menu-icon">
+                Tenants
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="messagell.php">
+                <img src="messages.png" alt="Messages Icon" class="menu-icon">
+                Messages
+            </a>
+        </li>  
+    </ul>
+</div>
     <div class="main-content">
         <!-- Dropdown in the top right corner -->
         <div class="top-bar">

@@ -311,6 +311,27 @@ body::before {
     color: #333; 
     margin-top: 8px;
 }
+.menu-item {
+    margin-bottom: 15px;
+}
+
+.menu-item a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.menu-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.menu-item a.active {
+    font-weight: bold;
+}
 
 
 

@@ -75,17 +75,37 @@ $landlord_id = $_SESSION['unique_id'];
     </style>
 </head>
 <body>
-
 <div class="sidebar">
     <div class="URent">
         <img src="urentlogo.png" alt="logo Image">
         <p class="logo-text">URent</p>
     </div>
     <ul>
-    <li><a href="lldb.php">Dashboard</a></li>
-                <li><a href="llmb.php">Report</a></li>
-                <li><a href="tenants.php" >Tenants</a></li>
-                <li><a href="messagell.php" class="active">Message</a></li>
+        <li class="menu-item">
+            <a href="lldb.php">
+                <img src="dashboard.png" alt="Dashboard Icon" class="menu-icon">
+                Dashboard
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="llmb.php">
+                <img src="report.png" alt="Report Icon" class="menu-icon">
+                Report
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="tenants.php">
+                <img src="tenant.png" alt="Tenants Icon" class="menu-icon">
+                Tenants
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="messagell.php" class="active">
+                <img src="messages.png" alt="Messages Icon" class="menu-icon">
+                Messages
+            </a>
+        </li>  
+    </ul>
 </div>
 <div class="main-content">
          <!-- Dropdown in the top right corner -->
