@@ -319,7 +319,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
+<script>
+    // Add active class to the current link
+document.addEventListener('DOMContentLoaded', function() {
+    const links = document.querySelectorAll('.sidebar ul li a');
+    links.forEach(link => {
+        if (link.href === window.location.href) {
+            link.classList.add('active');
+        }
+    });
+});
+    </script>
 
 
 </body>

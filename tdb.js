@@ -182,16 +182,17 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 });
 
-// Dropdown Toggle Logic
-document.addEventListener('DOMContentLoaded', function () {
-    const dropdownToggle = document.querySelector('.dropdown-toggle');
-    const dropdown = document.querySelector('.dropdown');
-
-    dropdownToggle.addEventListener('click', function (e) {
-        e.preventDefault();
-        dropdown.classList.toggle('open');
+// Add active class to the current link
+document.addEventListener('DOMContentLoaded', function() {
+    const links = document.querySelectorAll('.sidebar ul li a');
+    links.forEach(link => {
+        if (link.href === window.location.href) {
+            link.classList.add('active');
+        }
     });
 });
+
+// Dropdown Toggle Logic for sidebar
 document.addEventListener('DOMContentLoaded', function() {
     const dropdowns = document.querySelectorAll('.dropdownSide');
 

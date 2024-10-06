@@ -89,7 +89,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     main(); // Call the main function to execute the flow
 });
-function toggleDropdown() {
-    var dropdown = document.querySelector('.dropdownSide');
-    dropdown.classList.toggle('open');
-}
+// Add active class to the current link
+document.addEventListener('DOMContentLoaded', function() {
+    const links = document.querySelectorAll('.sidebar ul li a');
+    links.forEach(link => {
+        if (link.href === window.location.href) {
+            link.classList.add('active');
+        }
+    });
+});
