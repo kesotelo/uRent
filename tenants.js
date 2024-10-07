@@ -3,6 +3,8 @@ function showPopup(type, roomNumber, username, email, phone) {
     switch (type) {
         case 'electricity':
             popup = document.getElementById('electricity-popup');
+            document.getElementById('tenant-room-electricity').innerText = roomNumber;
+            document.getElementById('tenant-name-electricity').innerText = username;
             document.getElementById('current-reading').innerText = '1234'; // eto yung sa hardware na need automate
             document.getElementById('previous-reading').innerText = '1200'; // eto yung sa hardware na need automate
             document.getElementById('receipt-items').innerHTML = `
@@ -15,6 +17,8 @@ function showPopup(type, roomNumber, username, email, phone) {
             break;
         case 'water':
             popup = document.getElementById('water-popup');
+            document.getElementById('tenant-room-water').innerText = roomNumber;
+            document.getElementById('tenant-name-water').innerText = username;
             document.getElementById('water-current-reading').innerText = '500'; // eto yung sa hardware na need automate
             document.getElementById('water-previous-reading').innerText = '450'; // eto yung sa hardware na need automate
             document.getElementById('receipt-items').innerHTML = `
@@ -27,6 +31,8 @@ function showPopup(type, roomNumber, username, email, phone) {
             break;
         case 'rental':
             popup = document.getElementById('rental-popup');
+            document.getElementById('tenant-room-rental').innerText = roomNumber;
+            document.getElementById('tenant-name-rental').innerText = username;
             document.getElementById('rent-amount').value = '5000'; // rent amount
             document.getElementById('receipt-items').innerHTML = `
                 <tr>
@@ -36,20 +42,20 @@ function showPopup(type, roomNumber, username, email, phone) {
                     <td>₱${document.getElementById('rent-amount').value}</td>
                 </tr>`;
             break;
-        case 'receipt':
-            popup = document.getElementById('receipt-popup');
-            
-            // Ensure the tenant name and room number are displayed correctly
-            document.getElementById('receipt-tenant-name').innerText = username || 'N/A';
-            document.getElementById('receipt-room').innerText = roomNumber || 'N/A';
-
-            // Generate current date
-            const currentDate = new Date().toLocaleDateString();
-            document.getElementById('receipt-date').innerText = currentDate;
-
-            // Update receipt total
-            updateReceiptTotal();
-            break;
+            case 'receipt':
+                popup = document.getElementById('receipt-popup');
+    
+                // Ensure the tenant name and room number are displayed correctly
+                document.getElementById('receipt-tenant-name').innerText = username || 'N/A';
+                document.getElementById('receipt-room').innerText = roomNumber || 'N/A';
+    
+                // Generate current date
+                const currentDate = new Date().toLocaleDateString();
+                document.getElementById('receipt-date').innerText = currentDate;
+    
+                // Update receipt total
+                updateReceiptTotal();
+                break;
         case 'info':
             popup = document.getElementById('info-popup');
             document.getElementById('tenant-name-info').innerText = username;
@@ -181,9 +187,6 @@ function markAsPaid() {
         };
     });
 }
-
-
-
 
 // Event listeners
 document.getElementById('peso-per-kwh').addEventListener('input', autoCalculateElectricityBill);

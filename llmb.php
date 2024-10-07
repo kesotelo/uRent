@@ -1,7 +1,16 @@
 <?php
 include_once 'connect.php';
-session_start();
+
+$sql = "SELECT room_num, username FROM tenant";
+$result = mysqli_query($conn, $sql);
+
+$tenants = array();
+while ($row = mysqli_fetch_assoc($result)) {
+    $tenants[] = $row;
+}
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,6 +73,17 @@ session_start();
             background: linear-gradient(135deg, #2B3544, #4a5f86);
             color: white;
         }
+
+        table {
+    width: 100%;
+    border-collapse: collapse;
+}
+td, th {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
     </style>
 </head>
 <body>

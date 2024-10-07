@@ -234,9 +234,9 @@ if (!$result) {
                         <p>Room <?php echo $row['room_num']; ?></p>
                         <p><?php echo $row['username']; ?></p>
                         <button onclick="showPopup('info', '<?php echo $row['room_num']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['email']; ?>', '<?php echo $row['phone_num']; ?>')">Information</button>
-                        <button onclick="showPopup('electricity', '<?php echo $row['room_num']; ?>')">Electricity</button>
-                        <button onclick="showPopup('water', '<?php echo $row['room_num']; ?>')">Water</button>
-                        <button onclick="showPopup('rental', '<?php echo $row['room_num']; ?>')">Rental</button>
+                        <button onclick="showPopup('electricity', '<?php echo $row['room_num']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['email']; ?>', '<?php echo $row['phone_num']; ?>')">Electricity</button>
+                        <button onclick="showPopup('water', '<?php echo $row['room_num']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['email']; ?>', '<?php echo $row['phone_num']; ?>')">Water</button>
+                        <button onclick="showPopup('rental', '<?php echo $row['room_num']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['email']; ?>', '<?php echo $row['phone_num']; ?>')">Rental</button>
                     </div>
                 <?php } ?>
             </div>
@@ -282,6 +282,8 @@ if (!$result) {
     <!-- Electricity Popup -->
     <div id="electricity-popup" class="popup">
         <div class="popup-content">
+        <p><strong>Room Number:</strong> <span id="tenant-room-electricity"></span></p>
+        <p><strong>Tenant Name:</strong> <span id="tenant-name-electricity"></span></p>
             <span class="close-btn" onclick="closePopup('electricity')">&times;</span>
             <h3>Electricity Bill Calculator</h3>
             <p>Current Reading: <span id="current-reading">1234</span></p>
@@ -295,6 +297,8 @@ if (!$result) {
     <!-- Water Popup -->
     <div id="water-popup" class="popup">
         <div class="popup-content">
+        <p><strong>Room Number:</strong> <span id="tenant-room-water"></span></p>
+        <p><strong>Tenant Name:</strong> <span id="tenant-name-water"></span></p>
             <span class="close-btn" onclick="closePopup('water')">&times;</span>
             <h3>Water Bill Calculator</h3>
             <p>Current Reading: <span id="water-current-reading">500</span></p>
@@ -302,12 +306,14 @@ if (!$result) {
             <p>Peso/CuM: <input type="number" id="peso-per-cum" /></p>
             <p>Total: ₱<span id="water-total-bill">0.00</span></p>
             <button onclick="showPopup('receipt')">Pay Bills</button>
-        </div>
+            </div>
     </div>
 
     <!-- Rental Popup -->
     <div id="rental-popup" class="popup">
         <div class="popup-content">
+        <p><strong>Room Number:</strong> <span id="tenant-room-rental"></span></p>
+        <p><strong>Tenant Name:</strong> <span id="tenant-name-rental"></span></p>
             <span class="close-btn" onclick="closePopup('rental')">&times;</span>
             <h3>Rental Bill Calculator</h3>
             <p>Rent Amount: <input type="number" id="rent-amount" value="0" /></p>
@@ -333,8 +339,8 @@ if (!$result) {
                     <p><strong>Date:</strong> <span id="receipt-date"></span></p>
                 </div>
                 <div class="row">
-                    <p><strong>Bill To:</strong> <span id="receipt-tenant-name"></span></p>
-                    <p><strong>Room:</strong> <span id="receipt-room"></span></p>
+                <p><strong>Tenant Name:</strong> <span id="receipt-tenant-name">N/A</span></p>
+                <p><strong>Room Number: </strong><span id="receipt-room">N/A</span></p>
                 </div>
             </div>
 
