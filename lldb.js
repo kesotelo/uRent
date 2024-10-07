@@ -22,10 +22,11 @@ function loadTable() {
                     // Build the table header
                     table.innerHTML = `
                         <tr>
-                            <th colspan="4">Year: ${year} Month: ${month} Bills Overview</th>
+                            <th colspan="5">Year: ${year} Month: ${month} Bills Overview</th>
                         </tr>
                         <tr>
-                            <th>Tenant (Room)</th>
+                            <th>Room Number</th>
+                            <th>Tenant</th>
                             <th>Electricity Bill Status</th>
                             <th>Water Bill Status</th>
                             <th>Rental Bills</th>
@@ -37,7 +38,8 @@ function loadTable() {
                         const tenantBill = billsData.find(bill => bill.tenant === `Room ${tenant.room_num}`);
                         table.innerHTML += `
                             <tr>
-                                <td>${tenant.username} (Room ${tenant.room_num})</td>
+                                <td>Room ${tenant.room_num}</td>
+                                <td>${tenant.username}</td>
                                 <td class="${tenantBill && tenantBill.electricityPaid ? 'paid' : 'not-paid'}">${tenantBill && tenantBill.electricityPaid ? 'Paid' : 'Not Paid'}</td>
                                 <td class="${tenantBill && tenantBill.waterPaid ? 'paid' : 'not-paid'}">${tenantBill && tenantBill.waterPaid ? 'Paid' : 'Not Paid'}</td>
                                 <td class="${tenantBill && tenantBill.rentPaid ? 'paid' : 'not-paid'}">${tenantBill && tenantBill.rentPaid ? 'Paid' : 'Not Paid'}</td>
