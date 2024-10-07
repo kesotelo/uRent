@@ -161,6 +161,7 @@ body::before {
     text-align: center;
     color: white;
     transition: transform 0.3s ease;
+    position: relative;
 }
 
 .tenant-room button {
@@ -172,7 +173,23 @@ body::before {
     cursor: pointer;
     border-radius: 5px;
 }
+.delete-btn {
+    position: absolute;   
+    top: 2px;        
+    right: 10px;       
+    background: none;   
+    border: none;      
+    cursor: pointer;    
+    font-size: 14px;     
+    padding: 0;         
+    margin: 0;                  
+    line-height: 1;      
+}
 
+.delete-btn span {
+    font-size: 14px;  
+    line-height: 1;     
+} 
 /* Popup Styles */
 .popup {
     display: none;
