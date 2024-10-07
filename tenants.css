@@ -125,6 +125,7 @@ body::before {
 }
 
 .tenant-room {
+    position: relative; /* Set the tenant-room container to relative so the button positions within it */
     background: linear-gradient(135deg, #2B3544, #4a5f86);
     padding: 20px;
     border-radius: 10px;
@@ -133,6 +134,19 @@ body::before {
     transition: transform 0.3s ease;
 }
 
+.delete-btn {
+    position: absolute; /* Position the button relative to its parent, the tenant-room */
+    top: 5px; /* Push it to the top */
+    right: 5px; /* And align it to the right */
+    background: none; /* No background needed */
+    border: none; /* No borders either */
+    padding: 0; /* Remove the unwanted padding */
+    margin: 0; /* No margin, clean slate */
+    cursor: pointer;
+    font-size: 18px;
+    color: red;
+    line-height: 1; /* Ensure no extra height for the 'X' */
+}
 
 
 .tenant-room button {

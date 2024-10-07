@@ -219,3 +219,13 @@ document.getElementById('add-tenant-form').addEventListener('submit', function (
         }
     };
 });
+function confirmDelete(roomNum) {
+    // Display the confirmation dialog
+    let confirmation = confirm("Are you sure you want to delete the tenant in Room " + roomNum + "?");
+
+    // If the user clicks "Yes", proceed with the deletion
+    if (confirmation) {
+        // Here you would send the request to your server to delete the tenant
+        window.location.href = "delete_tenant.php?room_num=" + roomNum;
+    }
+}

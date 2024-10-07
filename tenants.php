@@ -231,6 +231,10 @@ if (!$result) {
             <div class="tenant-grid">
                 <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                     <div class="tenant-room">
+                     <!-- Delete button with "X" in the top-right corner -->
+                        <button class="delete-btn" onclick="confirmDelete('<?php echo $row['room_num']; ?>')">
+                        <span>&#x2716;</span>
+                     </button>
                         <p>Room <?php echo $row['room_num']; ?></p>
                         <p><?php echo $row['username']; ?></p>
                         <button onclick="showPopup('info', '<?php echo $row['room_num']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['email']; ?>', '<?php echo $row['phone_num']; ?>')">Information</button>
