@@ -339,8 +339,8 @@ if (!$result) {
                     <p><strong>Date:</strong> <span id="receipt-date"></span></p>
                 </div>
                 <div class="row">
-                <p><strong>Tenant Name:</strong> <span id="receipt-tenant-name">N/A</span></p>
-                <p><strong>Room Number: </strong><span id="receipt-room">N/A</span></p>
+                <p><strong>Tenant Name:</strong> <span id="receipt-tenant-name"></span></p>
+                <p><strong>Room Number: </strong><span id="receipt-room"></span></p>
                 </div>
             </div>
 
