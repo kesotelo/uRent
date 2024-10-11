@@ -2,6 +2,7 @@
 <?php
 include_once 'connect.php';
 session_start();
+error_reporting(E_ALL);
 
 // Query to get tenant data
 $query = "SELECT * FROM tenant";
@@ -241,7 +242,8 @@ if (!$result) {
                         <button onclick="showPopup('electricity', '<?php echo $row['room_num']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['email']; ?>', '<?php echo $row['phone_num']; ?>')">Electricity</button>
                         <button onclick="showPopup('water', '<?php echo $row['room_num']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['email']; ?>', '<?php echo $row['phone_num']; ?>')">Water</button>
                         <button onclick="showPopup('rental', '<?php echo $row['room_num']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['email']; ?>', '<?php echo $row['phone_num']; ?>')">Rental</button>
-                    </div>
+                        <button onclick="showPopup('mark-as-paid', '<?php echo $row['room_num']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['email']; ?>', '<?php echo $row['phone_num']; ?>')">Mark As Paid</button>
+                        </div>
                 <?php } ?>
             </div>
         </div>
@@ -373,9 +375,30 @@ if (!$result) {
             <button onclick="markAsPaid()">Paid</button>
         </div>
     </div>
+
+<!-- Popup for Marking as Paid -->
+<div id="mark-paid-popup" class="popup">
+    <div class="popup-content">
+        <span id="popup-room-number" style="display:none;"></span>
+        <span id="popup-tenant-name" style="display:none;"></span> <!-- Store tenant name -->
+
+        <span class="close-btn" onclick="closePopup('mark-as-paid')">&times;</span>
+        <h3>Select Bill to Mark as Paid</h3>
+
+        <!-- Payment date input field -->
+        <input type="month" id="paymentDate">
+
+        <!-- Buttons to mark bills as paid -->
+        <button onclick="markBillAsPaid(document.getElementById('popup-room-number').innerText, 'electricity', document.getElementById('paymentDate').value, document.getElementById('popup-tenant-name').innerText)">Electricity</button>
+        <button onclick="markBillAsPaid(document.getElementById('popup-room-number').innerText, 'water', document.getElementById('paymentDate').value, document.getElementById('popup-tenant-name').innerText)">Water</button>
+        <button onclick="markBillAsPaid(document.getElementById('popup-room-number').innerText, 'rental', document.getElementById('paymentDate').value, document.getElementById('popup-tenant-name').innerText)">Rental</button>
+    </div>
+</div>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="tenants.js"></script>
+    <script src="tenants789ss.js"></script>
     
 </body>
 </html>

@@ -21,12 +21,13 @@ if (isset($_FILES['pdf'])) {
     // Attempt to move uploaded file
     if (move_uploaded_file($_FILES['pdf']['tmp_name'], $uploadFile)) {
         $room_number = $_POST['room_number'];
+        $tenant_name = $_POST['tenant_name']; 
         $amount = $_POST['amount'];
         $bill_type = $_POST['bill_type'];
         $payment_date = $_POST['payment_date'];
 
         $stmt = $conn->prepare("INSERT INTO transactions (room_number, tenant_name, bill_type, amount_paid, date_paid, proof_of_payment) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssss", $room_number, $room_number, $bill_type, $amount, $payment_date, $pdfFileName);
+        $stmt->bind_param("ssssss", $room_number, $tenant_name, $bill_type, $amount, $payment_date, $pdfFileName);    
 
         if ($stmt->execute()) {
             echo "Payment saved successfully!";

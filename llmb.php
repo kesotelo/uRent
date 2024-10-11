@@ -64,6 +64,16 @@ session_start();
             background: linear-gradient(135deg, #2B3544, #4a5f86);
             color: white;
         }
+        .dropdowns-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .dropdown-label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -237,6 +247,36 @@ session_start();
         <div id="bills-section" style="display:none;">
             <h2>Monthly Report</h2>
             <table id="bills-table">
+            <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="year-select">Select Year</label>
+            <select id="year-select" class="form-select">
+                <?php
+                $currentYear = date("Y");
+                for ($year = $currentYear; $year >= 2018; $year--) {
+                    echo "<option value='$year'>$year</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="month-select">Select Month</label>
+            <select id="month-select" class="form-select">
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+            </select>
+        </div>
+    </div>
                 <!-- The table will be populated by JavaScript -->
             </table>
         </div>
@@ -267,6 +307,6 @@ session_start();
     </div>
     <div class="bills-section_length" id="bills_section_length"><label>Show <select name="bills_section_length" aria-controls="bills-section" class=""><option value="10">10</option><option value="20">20</option><option value="30">30</option><option value="40">40</option></select> entries</label></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lldb.js"></script>
+    <script src="lldbs2s.js"></script>
 </body>
 </html>
