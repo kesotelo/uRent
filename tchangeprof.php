@@ -15,7 +15,7 @@ $q = mysqli_num_rows($req);
 if($q == 1){
         $up1 = "UPDATE tenant SET username='$user' , email = '$email' , phone_num = '$phone'   WHERE tenant_id='$id'";
         	mysqli_query($conn, $up1);
-            echo '<script>alert("Information     changed)</script>';
+            echo '<script>alert("Information changed)</script>';
             echo '<script>window.location="tdb.php"</script>';
             
         	
