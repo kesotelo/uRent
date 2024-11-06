@@ -13,7 +13,18 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* Dropdown Position and Style */
+        #addTenantForm {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
         .dropdown {
             position: fixed;
             top: 10px;
@@ -21,20 +32,20 @@ session_start();
             z-index: 1000;
         }
         .btn-secondary {
-            background-color: transparent; /* Transparent background */
-            border: none; /* Remove border */
-            padding: 0; /* Adjust padding if necessary */
+            background-color: transparent; 
+            border: none;
+            padding: 0;
         }
 
         .rounded-circle {
-            margin-right: 10px; /* Space between the image and username */
-            border-radius: 50%; /* Ensure the image stays rounded */
+            margin-right: 10px; 
+            border-radius: 50%; 
         }
 
         .dropdown-menu {
-            background: linear-gradient(135deg, #2A2F44, #5B4C69); /* Keep your original gradient */
+            background: linear-gradient(135deg, #2A2F44, #5B4C69);
             color: white;
-            padding: 10px; /* Adjust padding if needed */
+            padding: 10px;
         }
         .dropdown-item {
             color: white;
@@ -73,6 +84,25 @@ session_start();
         .dropdown-label {
             margin-right: 10px;
             font-weight: bold;
+        }
+        .btn {
+            padding: 8px 12px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #2B3544, #4a5f86);
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        .btn.cancel {
+            background-color: #f44336;
+        }   
+                /* Additional styling for sorting icons */
+                .sortable {
+            cursor: pointer;
+        }
+        .sortable i {
+            margin-left: 5px;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -246,40 +276,61 @@ session_start();
     <div class="main-content2">
         <div id="bills-section" style="display:none;">
             <h2>Monthly Report</h2>
-            <table id="bills-table">
-            <div class="row mb-3">
-        <div class="col-md-6">
-            <label for="year-select">Select Year</label>
-            <select id="year-select" class="form-select">
-                <?php
-                $currentYear = date("Y");
-                for ($year = $currentYear; $year >= 2018; $year--) {
-                    echo "<option value='$year'>$year</option>";
-                }
-                ?>
-            </select>
-        </div>
-        <div class="col-md-6">
-            <label for="month-select">Select Month</label>
-            <select id="month-select" class="form-select">
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-            </select>
-        </div>
+    <!-- Dropdowns for selecting month and year -->
+    <label for="yearSelect">Select Year:</label>
+    <select id="yearSelect" class="form-select"></select>
+
+    <label for="monthSelect">Select Month:</label>
+    <select id="monthSelect" class="form-select">
+        <option value="01">January</option>
+        <option value="02">February</option>
+        <option value="03">March</option>
+        <option value="04">April</option>
+        <option value="05">May</option>
+        <option value="06">June</option>
+        <option value="07">July</option>
+        <option value="08">August</option>
+        <option value="09">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+    </select>
+
+    <!-- Add Tenant Button -->
+    <button id="addTenantButton" class="btn">Add Tenant</button>
+
+    <!-- Monthly Report Table -->
+    <table id="bills-table">
+        <thead>
+            <tr>
+            <th class="sortable" onclick="sortTable('tenant_name')">Tenant Name <i class="sort-icon"></i></th>
+            <th class="sortable" onclick="sortTable('room_number')">Room Number <i class="sort-icon"></i></th>
+                <th>Electricity</th>
+                <th>Water</th>
+                <th>Rental</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Rows will be populated here by JavaScript -->
+        </tbody>
+    </table>
+
+    <!-- Overlay and Add Tenant Form -->
+    <!-- Add Tenant Form -->
+    <div id="overlay"></div>
+    <div id="addTenantForm">
+        <h3>Add Tenant</h3>
+        <label for="tenantName">Tenant Name:</label>
+        <input type="text" id="tenantName" required>
+
+        <label for="roomNumber">Room Number:</label>
+        <input type="number" id="roomNumber" required>
+
+        <br><br>
+        <button id="submitTenant" class="btn">Submit</button>
+        <button id="cancelForm" class="btn cancel">Cancel</button>
     </div>
-                <!-- The table will be populated by JavaScript -->
-            </table>
-        </div>
+</div>
 
         <div id="report-section" style="display:none;">
             <h2>Transaction Report</h2>
@@ -306,7 +357,185 @@ session_start();
         </div>
     </div>
     <div class="bills-section_length" id="bills_section_length"><label>Show <select name="bills_section_length" aria-controls="bills-section" class=""><option value="10">10</option><option value="20">20</option><option value="30">30</option><option value="40">40</option></select> entries</label></div>
+    <script>
+        
+        const yearSelect = document.getElementById("yearSelect");
+        const currentYear = new Date().getFullYear();
+        for (let year = 2020; year <= currentYear; year++) {
+            const option = document.createElement("option");
+            option.value = year;
+            option.text = year;
+            yearSelect.appendChild(option);
+        }
+
+        const tableBody = document.getElementById("tableBody");
+
+function loadTransactionReport() {
+    const tableBody = document.querySelector("#report-table tbody");
+    tableBody.innerHTML = '';
+
+    fetch('fetch_transactions.php')
+        .then(response => response.json())
+        .then(transactions => {
+            transactions.forEach(transaction => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${transaction.room_number}</td>
+                    <td>${transaction.tenant_name}</td>
+                    <td>${transaction.bill_type}</td>
+                    <td>${transaction.amount_paid}</td>
+                    <td>${transaction.date_paid}</td>
+                    <td>
+                        <a href="uploads/${transaction.proof_of_payment}" target="_blank">
+                            View PDF
+                        </a>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching transactions:', error);
+        });
+}
+
+document.querySelectorAll('.dropdown-toggleSide').forEach(item => {
+    item.addEventListener('click', function() {
+        const dropdownMenu = this.nextElementSibling;
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+});
+
+document.querySelectorAll('.dropdown-itemSide').forEach(function(item) {
+    item.addEventListener('click', function() {
+        const action = this.getAttribute('data-action');
+
+        document.getElementById('bills-section').style.display = 'none';
+        document.getElementById('report-section').style.display = 'none';
+
+        if (action === 'monthly_report') {
+            document.getElementById('bills-section').style.display = 'block';
+            loadTable();
+        } else if (action === 'transaction_report') {
+            document.getElementById('report-section').style.display = 'block';
+            loadTransactionReport();
+        }
+    });
+});
+
+document.getElementById('bills-section').style.display = 'block';
+
+let currentSort = {
+            column: null,
+            ascending: true
+        };
+
+        function sortTable(column) {
+            const table = document.getElementById("bills-table").getElementsByTagName("tbody")[0];
+            const rows = Array.from(table.getElementsByTagName("tr"));
+
+            if (currentSort.column === column) {
+                currentSort.ascending = !currentSort.ascending;
+            } else {
+                currentSort.column = column;
+                currentSort.ascending = true;
+            }
+
+            const columnIndex = column === 'tenant_name' ? 0 : 1;
+
+            rows.sort((a, b) => {
+                const cellA = a.cells[columnIndex].innerText.toLowerCase();
+                const cellB = b.cells[columnIndex].innerText.toLowerCase();
+
+                if (cellA < cellB) return currentSort.ascending ? -1 : 1;
+                if (cellA > cellB) return currentSort.ascending ? 1 : -1;
+                return 0;
+            });
+
+            table.innerHTML = "";
+            rows.forEach(row => table.appendChild(row));
+
+            document.querySelectorAll('.sort-icon').forEach(icon => icon.innerText = '▲▼');
+            const currentIcon = document.querySelectorAll(".sortable")[columnIndex].querySelector('.sort-icon');
+            currentIcon.innerText = currentSort.ascending ? '▲' : '▼';
+        }
+
+
+        function populateTable() {
+            const tableBody = document.getElementById("tableBody");
+            data.forEach(item => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.tenant_name}</td>
+                    <td>${item.room_number}</td>
+                    <td>${item.electricity}</td>
+                    <td>${item.water}</td>
+                    <td>${item.rental}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        populateTable();
+        document.addEventListener('DOMContentLoaded', () => {
+    const addTenantButton = document.getElementById('addTenantButton');
+    const addTenantForm = document.getElementById('addTenantForm');
+    const overlay = document.getElementById('overlay');
+    const cancelFormButton = document.getElementById('cancelForm');
+
+    addTenantButton.addEventListener('click', () => {
+        addTenantForm.style.display = 'block';
+        overlay.style.display = 'block';
+    });
+
+    overlay.addEventListener('click', closeForm);
+    cancelFormButton.addEventListener('click', closeForm);
+
+    function closeForm() {
+        addTenantForm.style.display = 'none';
+        overlay.style.display = 'none';
+    }
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const submitTenantButton = document.getElementById('submitTenant');
+
+    submitTenantButton.addEventListener('click', () => {
+        const tenantName = document.getElementById('tenantName').value;
+        const roomNumber = document.getElementById('roomNumber').value;
+
+        if (!tenantName || !roomNumber) {
+            alert("Please fill out all fields.");
+            return;
+        }
+
+        fetch('add_tenant.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `tenant_name=${encodeURIComponent(tenantName)}&room_number=${encodeURIComponent(roomNumber)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                alert('Tenant added successfully!');
+                document.getElementById('addTenantForm').style.display = 'none';
+                document.getElementById('overlay').style.display = 'none';
+                loadTable();
+            } else {
+                alert('Error adding tenant: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error adding tenant.');
+        });
+    });
+});
+
+        
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lldbs2s.js"></script>
+    <script src="lldbs2ssss.js"></script>
 </body>
 </html>
