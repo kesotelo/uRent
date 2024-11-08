@@ -64,7 +64,46 @@ session_start();
             background: linear-gradient(135deg, #2B3544, #4a5f86);
             color: white;
         }
+        .bill-section {
+        display: flex;
+        justify-content: flex-start;
+        padding: 20px;
+        gap: 80px;
+        margin-bottom: 10px;
+        margin-left: -300px;
+    }
 
+    .bill-card {
+        padding: 10px;
+        margin: 5px 0;
+        background: linear-gradient(135deg, #ccd4e0, #7996c7);
+        color: #333;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        width: 250px;
+        text-align: center;
+    }
+
+    .bill-card h2 {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    .bill-card p {
+        font-size: 15px;
+        margin: 5px 0;
+        }
+
+    .print-btn, .view-btn {
+        padding: 5px 10px;
+        font-size: 0.9rem;
+        color: #fff;
+        background-color: #4a5f86;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
     </style>
 </head>
 <body>
@@ -84,23 +123,7 @@ session_start();
             <a href="#" class="dropdown-toggleSide">
                 <img src="bill.png" alt="Bills Icon" class="menu-item"> Bills <span class="arrowSide"></span>
             </a>
-            <ul class="dropdown-menuSide">
-                <li>
-                    <a href="twb.php">
-                        <img src="water.png" alt="Water Bill Icon" class="submenu-item"> Water Bill
-                    </a>
-                </li>
-                <li>
-                    <a href="teb.php">
-                        <img src="electricity.png" alt="Electricity Bill Icon" class="submenu-item"> Electricity Bill
-                    </a>
-                </li>
-                <li>
-                    <a href="trb.php">
-                        <img src="rent.png" alt="Rent Bill Icon" class="submenu-item"> Rent Bill
-                    </a>
-                </li>
-            </ul>
+
         </li>
         <li class="dropdownSide">
             <a href="#" class="dropdown-toggleSide">
@@ -131,7 +154,6 @@ session_start();
 					{
 				?>
 <div class="main-content">
-    <h1>Water Bill</h1>
      <!-- Dropdown in the top right corner -->
      <div class="top-bar">
             <div class="dropdown" style="display: flex; align-items: center;">
@@ -217,35 +239,59 @@ session_start();
 </div>
 <div class="main-content2">
     <div class="bill-section">
-        <div class="bill-card previous-bill">
-            <h2>Previous Bill</h2>
-            <p><?php echo $row["p_bill"]; ?></p> <!-- Fetched previous bill -->
-            <p class="payment-date">Date of Payment: </p> <!-- Fetched payment date -->
-            <button id="printButton1" class="print-btn">Print</button>
+        <!-- Water Bill Container -->
+        <div class="bill-container">
+            <h1>Water Bill</h1>
+            <div class="bill-card previous-bill">
+                <h2>Previous Bill</h2>
+                <p>₱<?php echo $row["p_bill"]; ?></p>
+                <p class="payment-date">Date of Payment: </p>
+                <button class="print-btn">Print</button>
+            </div>
+            <div class="bill-card current-bill">
+                <h2>Current Bill</h2>
+                <p>₱<?php echo $row["n_bill"]; ?></p>
+                <p>Detailed Breakdown</p>
+                <button class="view-btn">View</button>
+            </div>
         </div>
 
-        <div class="bill-card current-bill">
-            <h2>Current Bill</h2>
-            <?php echo $row["n_bill"]; ?>
-            <p></p> <!-- Fetched current bill -->
-            <p>Detailed Breakdown</p>
-            <button id="viewButton" class="view-btn">View</button>
+        <!-- Electricity Bill Container -->
+        <div class="bill-container">
+            <h1>Electricity Bill</h1>
+            <div class="bill-card previous-bill">
+                <h2>Previous Bill</h2>
+                <p>₱<?php echo $row["p_bill"]; ?></p>
+                <p class="payment-date">Date of Payment: </p>
+                <button class="print-btn">Print</button>
+            </div>
+            <div class="bill-card current-bill">
+                <h2>Current Bill</h2>
+                <p>₱<?php echo $row["n_bill"]; ?></p>
+                <p>Detailed Breakdown</p>
+                <button class="view-btn">View</button>
+            </div>
+        </div>
+
+        <!-- Rent Bill Container -->
+        <div class="bill-container">
+            <h1>Rent Bill</h1>
+            <div class="bill-card previous-bill">
+                <h2>Previous Bill</h2>
+                <p>₱<?php echo $row["p_bill"]; ?></p>
+                <p class="payment-date">Date of Payment: </p>
+                <button class="print-btn">Print</button>
+            </div>
+            <div class="bill-card current-bill">
+                <h2>Current Bill</h2>
+                <p>₱<?php echo $row["n_bill"]; ?></p>
+                <p>Detailed Breakdown</p>
+                <button class="view-btn">View</button>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Popup Container -->
-<div id="popup-container" class="popup">
-    <div class="popup-content">
-        <span class="close-btn">&times;</span>
-        <h2>Bill Details</h2>
-        <p>Bill No. #</p>
-        <p>Bill To:</p>
-        <p>Due Date:</p>
-        <p>Room:</p>
-
-    </div>
-</div>
 <script>// Dropdown Toggle Logic
 document.addEventListener('DOMContentLoaded', function () {
     const dropdownToggle = document.querySelector('.dropdown-toggle');
