@@ -226,7 +226,10 @@ if (!$result) {
 </div>
     <div class="main-content2">
             <div class="add-tenants-container">
-                <button class="add-tenants-btn" onclick="showPopup('add-tenant')">Add Tenants</button>
+            <button class="add-tenants-btn" onclick="">Peso/Kwh</button>
+            <button class="add-tenants-btn" onclick="">Peso/Cum</button>
+            <button class="add-tenants-btn" onclick="">Rent Per Month</button>
+            <button class="add-tenants-btn" onclick="showPopup('add-tenant')">Add Tenants</button>
             </div>
             <h2>Tenants</h2>
             <div class="tenant-grid">
