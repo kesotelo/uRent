@@ -462,7 +462,13 @@ let currentSort = {
 
 
         function populateTable() {
-            const tableBody = document.getElementById("tableBody");
+    const tableBody = document.getElementById("tableBody");
+
+    // Fetch data from an API endpoint (adjust URL to your server setup)
+    fetch('add_tenant.php') // replace with your actual endpoint
+        .then(response => response.json())
+        .then(data => {
+            tableBody.innerHTML = ''; // Clear existing rows
             data.forEach(item => {
                 const row = document.createElement("tr");
                 row.innerHTML = `
@@ -474,7 +480,12 @@ let currentSort = {
                 `;
                 tableBody.appendChild(row);
             });
-        }
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+        });
+}
+
 
         populateTable();
         document.addEventListener('DOMContentLoaded', () => {

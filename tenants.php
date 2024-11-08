@@ -242,7 +242,6 @@ if (!$result) {
                         <button onclick="showPopup('electricity', '<?php echo $row['room_num']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['email']; ?>', '<?php echo $row['phone_num']; ?>')">Electricity</button>
                         <button onclick="showPopup('water', '<?php echo $row['room_num']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['email']; ?>', '<?php echo $row['phone_num']; ?>')">Water</button>
                         <button onclick="showPopup('rental', '<?php echo $row['room_num']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['email']; ?>', '<?php echo $row['phone_num']; ?>')">Rental</button>
-                        <button onclick="showPopup('mark-as-paid', '<?php echo $row['room_num']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['email']; ?>', '<?php echo $row['phone_num']; ?>')">Mark As Paid</button>
                         </div>
                 <?php } ?>
             </div>
